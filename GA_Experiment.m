@@ -1,21 +1,21 @@
 % GA Code
 % BATTERY
-batteryAgents = [6, 6, 4];
+batteryChoices = [6, 6, 4];
 % MOTOR
-motorAgents = [24];
+motorChoices = [24];
 % PROPELLER
-propAgents = [7, 12, 10, 10, 15, 15];
+propChoices = [7, 12, 10, 10, 15, 15];
 % ROD
-rodAgents=[4,11,8];
-numAgents = numel([batteryAgents motorAgents propAgents rodAgents]);
+rodChoices=[4,11,8];
+numChoices = numel([batteryChoices motorChoices propChoices rodChoices]);
 
 
 ObjectiveFunction = @objfun;
-nvars = numAgents;    % Number of variables
-LB = ones(1,numAgents);   % Lower bound
-UB = [batteryAgents motorAgents propAgents rodAgents];  % Upper bound
+nvars = numChoices;    % Number of variables
+LB = ones(1,numChoices);   % Lower bound
+UB = [batteryChoices motorChoices propChoices rodChoices];  % Upper bound
 ConstraintFunction = @constfun;
-IntCon=1:numAgents;
+IntCon=1:numChoices;
 
 options = gaoptimset('PlotFcn', @gaplotbestf);
 [x,fval] = ga(ObjectiveFunction,nvars,[],[],[],[],LB,UB, ...
