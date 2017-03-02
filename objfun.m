@@ -1,6 +1,5 @@
 function obj=objfun(actions)
-    %if ~isequal(actions,lastactions)
-     %Residual parameters of the design
+    
      penModes={'const', 'quad', 'div','divconst','death', 'deathplus', 'lin', 'none'};
     %choose mode with penMode
     penalty.quadMin=100;  %Note: for exponentially decaying penalty, use these to select
