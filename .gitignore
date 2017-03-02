@@ -1,0 +1,15 @@
+# General things to ignore
+*.exe
+desktop.ini
+*.png # figures
+
+# QProp files which get writen every time
+propfile
+motorfile
+
+# MATLAB files and figures
+*.asv
+*.mat
+*.fig
+*.png
+
