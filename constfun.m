@@ -14,7 +14,7 @@ function [con,ceq]=constfun(x)
     %design of system
     sys=design_sys(battery, motor, prop, foil, rod, res);
     %calculate objective
-    [G,Objectives, constraints] = calc_obj(battery, motor, prop, foil, rod, sys);
+    [obj, constraints] = calc_obj(battery, motor, prop, foil, rod, sys);
     
     con=constraints';
     ceq=[];

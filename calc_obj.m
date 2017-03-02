@@ -1,4 +1,4 @@
-function [G,Objectives, constraints] = calc_obj(battery, motor, prop, foil, rod, sys)
+function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod, sys)
     
     failure=0;
     %write prop file for qprop
@@ -15,18 +15,15 @@ function [G,Objectives, constraints] = calc_obj(battery, motor, prop, foil, rod,
     % Calculation of Constraints (only possible with performance data) 
         [constraints]=calc_constraints(battery,motor,prop,foil,rod,sys,hover,failure);
   
-    % Calculation of Objectivess
-    Objectives.totalCost =sys.cost;
-    Objectives.flightTime = battery.Energy /(4*hover.pelec+sys.power); %note: power use is for EACH motor.
-    distance= 300; % climb distance in meters--temp, should be specified elsewhere
-
-    %Adding Objectives together...
-    multiObjective=Objectives.flightTime-3*(Objectives.totalCost);
-    
     %gives a poor performance in case the model breaks
    if failure
-        G = -10000;
+        obj = -10000;
    else
-       G=multiObjective;
+    % Calculates objectives
+    Objectives.totalCost =sys.cost;
+    Objectives.flightTime = battery.Energy /(4*hover.pelec+sys.power); %note: power use is for EACH motor.
+
+    %Adding Objectives together...
+    obj=Objectives.flightTime-3*(Objectives.totalCost);
    end
 end
