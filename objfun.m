@@ -1,17 +1,5 @@
 function obj=objfun(actions)
     
-     penModes={'const', 'quad', 'div','divconst','death', 'deathplus', 'lin', 'none'};
-    %choose mode with penMode
-    penalty.quadMin=100;  %Note: for exponentially decaying penalty, use these to select
-    penalty.quadMax=100;  %max and min penalty.
-    penalty.quadtrunc=-100;    % truncated minimum G for the exponential penalty
-    penalty.const=100;    %Defines constant portion of penalty
-    penalty.div=10;        %Scale term of penalty for divisive penalty
-    penalty.death=-100;
-    penalty.lin=-1000;
-    penalty.failure=-7000;
-    penalty.Mode='none';
-
     %importing data
     [batteryData, motorData, propData, foilData, rodData, matData] = load_data('batterytable.csv', ...
     'motortable.csv', 'propranges.csv', 'airfoiltable.csv','rodtable.csv','materialtable.csv');
@@ -34,8 +22,7 @@ function obj=objfun(actions)
     rod = design_rod(actions, rodData, matData, prop,res);
     sys=design_sys(battery, motor, prop, foil, rod, res, motorNum);
 
-    [G,Objectives, constraints, hover] = calc_G(penalty,...
-            battery, motor, prop, foil, rod, sys);
+    [G,Objectives, constraints] = calc_obj(battery, motor, prop, foil, rod, sys);
         
         %end
     obj=-G;
