@@ -1,5 +1,3 @@
-function obj=objfun(x)
-                
     
     % "non-designed" parts of the design.
     res.mass=0.3;
@@ -17,7 +15,7 @@ function obj=objfun(x)
     %calculate objective
     [obj, constraints] = calc_obj(battery, motor, prop, foil, rod, sys);
 
-    obj=-obj;
+    obj=-obj+1000*sum(constraints)^2;
 end
 
 

@@ -2,7 +2,7 @@ function battery = design_battery(x)
     %load appropriate data
     batteryData = csvread('batterytable.csv', 1, 1);
     
-    cellnum=x(1);
+    cellnum=double(x(1));
     sConfigs=double(x(2));
     pConfigs=double(x(3));
     

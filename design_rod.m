@@ -4,7 +4,7 @@ function rod = design_rod(x, prop, res)
     rodData= csvread('rodtable.csv',1,0);
     matData=csvread('materialtable.csv',1,1);
     
-    mat.Type=x(11);
+    mat.Type=double(x(11));
     mat.Ymod=matData(x(11),1); %young's modulus in GPa
     mat.Sut=matData(x(11),2); %ultimate strength in MPa
     mat.Sy=matData(x(11),3); %yield strength in MPa
