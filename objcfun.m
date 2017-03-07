@@ -1,3 +1,4 @@
+function obj=objcfun(x)           
     
     % "non-designed" parts of the design.
     res.mass=0.3;
@@ -13,9 +14,14 @@
     %design of system
     sys=design_sys(battery, motor, prop, foil, rod, res);
     %calculate objective
-    [obj, constraints] = calc_obj(battery, motor, prop, foil, rod, sys);
+    [obj1, constraints] = calc_obj(battery, motor, prop, foil, rod, sys);
+    
+    conviol=max(0,constraints);
 
-    obj=-obj+1000*sum(constraints)^2;
+    obj=-obj1+1000*sum(conviol.^2);
+    if isnan(obj) || obj>10000
+        obj=10000;
+    end
 end
 
 
