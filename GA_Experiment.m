@@ -10,7 +10,7 @@ rodChoices=[4,11,8];
 numChoices = numel([batteryChoices motorChoices propChoices rodChoices]);
 
 
-ObjectiveFunction = @objcfun;
+ObjectiveFunction = @objufun;
 nvars = numChoices;    % Number of variables
 LB = ones(1,numChoices);   % Lower bound
 UB = [batteryChoices motorChoices propChoices rodChoices];  % Upper bound
@@ -18,6 +18,6 @@ ConstraintFunction = @constfun;
 IntCon=1:numChoices;
 
 options = gaoptimset('PlotFcn', @gaplotbestf);
-[x,fval] = ga(ObjectiveFunction,nvars,[],[],[],[],LB,UB, ...
-    [],IntCon,options)
+[x,fval,exitflag, output] = ga(ObjectiveFunction,nvars,[],[],[],[],LB,UB, ...
+    ConstraintFunction,IntCon,options)
 
