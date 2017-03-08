@@ -17,6 +17,11 @@ else
     
     thrustReq = sys.mass*9.81/4;
  constraints(2)=10*(1-hover.thrust/thrustReq); %Note: multiplying by 10 is arbitrary to make the magnitude larger
+ tol=0.005;
+ if constraints(2)<=tol
+     constraints(2)=0;
+ end
+ 
  
 %Battery 
  %max current
