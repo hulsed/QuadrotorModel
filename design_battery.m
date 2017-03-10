@@ -1,10 +1,10 @@
-function battery = design_battery(x)
+function battery = design_battery(xb_loc)
     %load appropriate data
     batteryData = csvread('batterytable.csv', 1, 1);
     
-    cellnum=x(1);
-    sConfigs=double(x(2));
-    pConfigs=double(x(3));
+    cellnum=xb_loc(1);
+    sConfigs=double(xb_loc(2));
+    pConfigs=double(xb_loc(3));
     
     %find properties of cell
     temp = batteryData(x(1), :);
