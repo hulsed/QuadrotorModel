@@ -6,7 +6,7 @@
     %zb_2 - battery cost
     %zb_3 - battery voltage allowed
     %zp_4 - battery energy stored
-    zb0=[1,1,1,1];
+    zb0=[0.33,27.06,22.2,1.7582e5];
     
     %zp_1 - propulsion mass
     %zp_2 - propulsion cost
@@ -30,6 +30,7 @@ startpt=[zb0,zp0,zs0];
 func=@sys_obj;
 const=@sys_const;
 
-options = optimoptions('fmincon','Display','iter-detailed');
-[x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+%options = optimoptions('fmincon','Display','iter-detailed');
+options = psoptimset('PlotFcn', @psplotbestf,'Display','iter-detailed', 'Cache', 'on');
+[x,fval,exitflag,output]=patternsearch(func,startpt, [], [], [], [], LB, UB, const, options)
 %NOTE: Pattern search could be a better idea.
