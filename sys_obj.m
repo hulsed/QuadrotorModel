@@ -1,4 +1,10 @@
-function F=sys_obj(zb,zp,zs)
+function F=sys_obj(z)
+
+%convert single vector into labeled vectors
+zb=z(1:4);
+zp=z(5:12);
+zs=z(13:14);
+
 %convert notation into human language
     %zb_1 - battery mass
     batteryMass=zb(1);
@@ -35,7 +41,7 @@ function F=sys_obj(zb,zp,zs)
     % residual "non-designed" parts of the design.
     resMass=0.3;
     resFramewidth=0.075; %temp width of frame!
-    resPlanArea=res.framewidth^2;
+    resPlanArea=resFramewidth^2;
     resCost=50;
     resPower=5;
 
@@ -44,9 +50,9 @@ function F=sys_obj(zb,zp,zs)
 
 %calculate objectives
     flightTime=batteryEnergy/totalPower;
-    totalCost=batteryCost+propulsionCost+structureCost+rescost;
+    totalCost=batteryCost+propulsionCost+structureCost+resCost;
 
-    F=3*totalCost-flighttime
+    F=3*totalCost-flightTime;
   
 
 end

@@ -1,4 +1,4 @@
-function [J_p,cb] =prop_objc(xp_loc,zp, yb_shar)
+function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
 
 %xp_loc, the local varables for propulsion
 %cp, the local constraint value
@@ -17,7 +17,7 @@ function [J_p,cb] =prop_objc(xp_loc,zp, yb_shar)
     %xp_loc 7 - ct
 %shared variables from other subsystems
     %yb_shar 1 - outside system mass
-    outsysMass=yb_shar(1);
+    outsysMass=yp_shar(1);
 
 %construct properties of each
     motor = design_motor(xp_loc);
@@ -32,7 +32,7 @@ function [J_p,cb] =prop_objc(xp_loc,zp, yb_shar)
     %yp_1 - propulsion mass
     yp(1)=4*(prop.mass+motor.Mass);
     %yp_2 - propulsion cost
-    yp(2)=4*(prop.cost+motor.cost);
+    yp(2)=4*(prop.cost+motor.Cost);
     %yp_3 - propulsion voltage applied
     yp(3)=hover.volts;
     %yp_4 - propulsion current applied
@@ -47,16 +47,25 @@ function [J_p,cb] =prop_objc(xp_loc,zp, yb_shar)
     yp(8)=prop.diameter;
     
 %calculate objective
-    J_p=(zp-yp).^2;
+    J_p=sum((zp-yp).^2);
+    
+    if isnan(J_p)
+        J_p=inf;
+    end
     
 %calculate constraints
     %cb_1 - doesn't use more current than the limit
-    cb(1)=hover.amps/motor.Imax-1;
+    cp(1)=hover.amps/motor.Imax-1;
     %cb_2 - doesn't use more power than the limit
-    cb(2)=hover.pelec/motor.Pmax-1;
+    cp(2)=hover.pelec/motor.Pmax-1;
     %cb(3) - must be capable of supplying the required thrust
-    cb(3)=hover.thrust/(sysMass*9.81/4)-1;
+    cp(3)=1-hover.thrust/(sysMass*9.81/4);
     %cb_4 - must not cause collision with 
-
+    
+    for i=1:length(cp)
+        if isnan(cp(i))
+            cp(i)=1e9;
+        end
+    end
     
 end

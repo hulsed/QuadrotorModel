@@ -7,7 +7,7 @@ function battery = design_battery(xb_loc)
     pConfigs=double(xb_loc(3));
     
     %find properties of cell
-    temp = batteryData(x(1), :);
+    temp = batteryData(xb_loc(1), :);
     cell.Cost = temp(1); 
     cell.Cap = temp(2) / 1000; 
     cell.C = temp(3); 

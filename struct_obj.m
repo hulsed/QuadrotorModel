@@ -10,7 +10,7 @@ function J_s=struct_obj(xs_loc,zs)
     %xp_loc 4 - length
 
 %constructing rod from appropriate data/calcs
-    rod = design_rod(xs_loc)
+    rod = design_rod(xs_loc);
 
 %coupling variables/properties shared with other components yb (y means
 %dependent shared variables)    
@@ -23,6 +23,6 @@ function J_s=struct_obj(xs_loc,zs)
 %rod with the system optimizer's estimates/targets/what it told the
 %other subsystems.
     
-    J_s=sum((zs-ys).^2)
+    J_s=sum((zs-ys).^2);
     
 end

@@ -17,11 +17,11 @@ function J_b=bat_obj(xb_loc,zb)
     %yb3 - battery voltage allowed
     yb(3)=battery.Volt;
     %yb4 - battery energy stored
-    yb(4)=battery.energy;
+    yb(4)=battery.Energy;
     
 %calc objective - consistency between the calculated properties of the
 %battery with the system optimizer's estimates/targets/what it told the
 %other subsystems.
-    J_b=sum((zb-yb).^2)
+    J_b=sum((zb-yb).^2);
 
 end

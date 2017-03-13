@@ -19,22 +19,23 @@ function cs= struct_const(xs_loc, ys_shar)
     %xp_loc 4 - length
 
 %constructing rod from appropriate data/calcs
-    rod = design_rod(xs_loc)
+    rod = design_rod(xs_loc);
 
 %local constraint calcs
     %cs_1 - rod must be long enough to prevent collision
+    resFramewidth=0.075;
     sepDist=1.25*propDiameter;
     motorDist=sepDist/sqrt(2); 
-    minRodLength=max(0.01, motorDist-res.framewidth/2);       
+    minRodLength=max(0.01, motorDist-resFramewidth/2);       
     
-    cs(1)=rod.length/minRodLength-1;
+    cs(1)=rod.Length/minRodLength-1;
     
     %cs_2 - rod must not meet vibrational requirements
     forcedFreq=propRpm/60; %converting to hz
     minnatFreq=2*forcedFreq; %natural frequency must be two times the forced frequency.
-    natFreq=sqrt(rod.Stiffness./(0.5*rod.Mass+propMass/4))/(2*pi)
+    natFreq=sqrt(rod.Stiffness./(0.5*rod.Mass+propMass/4))/(2*pi);
     
-    cs(2)=1-natFreq/minnatFreq
+    cs(2)=1-natFreq/minnatFreq;
     
     %cs_3 - rod must meet deflection requirements
     maxDefl=0.01*rod.Length;
