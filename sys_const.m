@@ -49,12 +49,12 @@ xs_opt=temp3;
 %already calculated in the subsystem optimizations (it was the objective)
 
 %creating a single vector of constraints
-J_i=[Jb_i, Jp_i, Js_i];
-eq=[];
-disp(['J_i= ', num2str(J_i)])
-disp(['z=   ', num2str(z)])
-disp(['xb_loc=', num2str(xb_opt)] )
-disp(['xp_loc=', num2str(xp_opt)] )
-disp(['xs_loc=', num2str(xs_opt)] )
+ J_i=[Jb_i, Jp_i, Js_i];
+% eq=[];
+% disp(['J_i= ', num2str(J_i)])
+% disp(['z=   ', num2str(z)])
+% disp(['xb_loc=', num2str(xb_opt)] )
+% disp(['xp_loc=', num2str(xp_opt)] )
+% disp(['xs_loc=', num2str(xs_opt)] )
 
 end

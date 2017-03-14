@@ -6,21 +6,21 @@ function [prop,foil] = design_prop(xp_loc)
     
     % Propeller Calculations
     %prop.airfoil = propData(xp_loc(2), 1); % propeller prop.airfoil
-    diameter = propData(xp_loc(3), 2)*0.0254; % diameter (inch->m)
-    angle = propData(xp_loc(4), 3); % blade angle at root
-    chord = propData(xp_loc(5), 5)*0.0254; % chord at root (inch->m)
+    diameter = propData(xp_loc(2), 2)*0.0254; % diameter (inch->m)
+    angle = propData(xp_loc(3), 3); % blade angle at root
+    chord = propData(xp_loc(4), 5)*0.0254; % chord at root (inch->m)
     
     %Foil Calculations
-    foil.Cl0=foilData(xp_loc(2),1);
-    foil.Cla=foilData(xp_loc(2),2)*360/(2*pi); %converting to 1/deg to 1/rad
-    foil.Clmin=foilData(xp_loc(2),3);
-    foil.Clmax=foilData(xp_loc(2),4);
-    foil.Cd0=foilData(xp_loc(2),5);
-    foil.Cd2=foilData(xp_loc(2),6)*360/(2*pi); %converting to 1/deg to 1/rad
-    foil.Clcd0=foilData(xp_loc(2),7);
-    foil.Reref=foilData(xp_loc(2),8);
-    foil.Reexp=foilData(xp_loc(2),9);
-    foil.Num=foilData(xp_loc(2),10);
+    foil.Cl0=foilData(xp_loc(1),1);
+    foil.Cla=foilData(xp_loc(1),2)*360/(2*pi); %converting to 1/deg to 1/rad
+    foil.Clmin=foilData(xp_loc(1),3);
+    foil.Clmax=foilData(xp_loc(1),4);
+    foil.Cd0=foilData(xp_loc(1),5);
+    foil.Cd2=foilData(xp_loc(1),6)*360/(2*pi); %converting to 1/deg to 1/rad
+    foil.Clcd0=foilData(xp_loc(1),7);
+    foil.Reref=foilData(xp_loc(1),8);
+    foil.Reexp=foilData(xp_loc(1),9);
+    foil.Num=foilData(xp_loc(1),10);
     
     
     %Assign prop characteristics to struct

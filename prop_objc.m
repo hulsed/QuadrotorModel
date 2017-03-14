@@ -8,13 +8,10 @@ function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
 %calculated inline. That is the meaning of calling this "objc"
 
 %local variables
-    %xp_loc 1 - choice of motor
     %xp_loc 2 - foil
     %xp_loc 3 - diam
-    %xp_loc 4 - ar
-    %xp_loc 5 - at
-    %xp_loc 6 - cr
-    %xp_loc 7 - ct
+    %xp_loc 4 - a
+    %xp_loc 5 - c
 %shared variables from other subsystems
     %yb_shar 1 - outside system mass
     outsysMass=yp_shar(1);
@@ -47,7 +44,7 @@ function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
     yp(8)=prop.diameter;
     
 %calculate objective
-    J_p=sum(((zp-yp)./yp).^2);
+    J_p=sum(((zp-yp)./zp).^2);
     
     if isnan(J_p)
         J_p=inf;

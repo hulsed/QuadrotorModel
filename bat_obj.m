@@ -22,6 +22,6 @@ function J_b=bat_obj(xb_loc,zb)
 %calc objective - consistency between the calculated properties of the
 %battery with the system optimizer's estimates/targets/what it told the
 %other subsystems.
-    J_b=sum(((zb-yb)./yb).^2);
+    J_b=sum(((zb-yb)./zb).^2);
 
 end

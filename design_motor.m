@@ -3,7 +3,7 @@ function motor = design_motor(xp_loc)
     motorData = csvread('motortable.csv', 1, 2, [1, 2, 12, 9]); %load starting from 2nd row, 2nd col
     
     % temp is our motor choice
-    temp =  motorData(xp_loc(1), :);
+    temp =  motorData(1, :);
     % For R0, convert to Ohms
     motor.kv = temp(1); 
     motor.R0 = temp(2)/1000; 

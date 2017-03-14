@@ -20,7 +20,7 @@ intcon=1:numvars;
 
 
 
-options=gaoptimset('PlotFcn',@gaplotbestf, 'TolCon', 0.1,'Display','off');
+options=gaoptimset('PlotFcn',@gaplotbestf, 'TolCon', 0.1,'Display','off','FitnessLimit', 0.01);
 
 
 [xs_min,Js_i,flags,outpt]=ga(@objstruct,numvars,[],[],[],[],LB,UB,@construct,intcon,options);

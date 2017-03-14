@@ -42,11 +42,18 @@ startpt=[zb0,zp0,zs0];
 func=@sys_obj;
 const=@sys_const;
 
-options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
-    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}, 'FinDiffRelStep', derivx);
+%options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
+%    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}, 'FinDiffRelStep', derivx);
 %options = psoptimset('PlotFcn', @psplotbestf,'Display','iter', 'Cache', 'off',...
  %   'PenaltyFactor', 1000, 'TolCon', 0.3, 'SearchMethod', {@searchneldermead});
-[x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+%[x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+
+options = optimset('Display','iter','PlotFcns',@optimplotfval);
+f_adapted=@sys_objc
+[x_star,fval,exitflag,output]=fminsearch(f_adapted, startpt,options)
+
+
+
 %[x,fval,exitflag,output]=patternsearch(func,startpt, [], [], [], [], LB, UB, const, options)
 %make graph
 %make table
@@ -55,19 +62,19 @@ options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, .
 
 
 %find the local variables of that optimum pt.
-xb=x(1:4);
-xp=x(5:12);
-xs=x(13:14);
+xb_star=x_star(1:4);
+xp_star=x_star(5:12);
+xs_star=x_star(13:14);
 
 parfor i=1:3
     if i==1
         %battery: do an exhaustive search of the possible configurations (small
         %space, little computational cost)
-        [temp(i),temp1(i,:)]=opt_bat(zb,zp,zs)
+        [temp(i),temp1(i,:)]=opt_bat(xb_star,xp_star,xs_star)
 
     elseif i==2
         %propeller: ga?
-        [temp(i),temp2(i-1,:)]=opt_prop(zb,zp,zs)
+        [temp(i),temp2(i-1,:)]=opt_prop(xb_star,xp_star,xs_star)
     elseif i==3
         %structure: use ga
         [temp(i),temp3(i-2,:) ]=opt_struct(zb,zp,zs)
