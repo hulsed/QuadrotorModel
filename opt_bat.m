@@ -1,4 +1,4 @@
-function Jb_i=opt_bat(zb,zp,zs)
+function [Jb_i,xb_loc]=opt_bat(zb,zp,zs)
 
 %bounds [6,6,4]
 UB=[6,6,4];

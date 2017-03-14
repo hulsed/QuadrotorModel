@@ -1,4 +1,4 @@
-function Jp_i=opt_prop(zb,zp,zs)
+function [Jp_i,xp_min]=opt_prop(zb,zp,zs)
 
 %variable bounds
 LB=[1,  1,  1,  1,  1,  1,  1];
@@ -13,7 +13,8 @@ intcon=1:numvars;
     mycp=[];
 %variables representing inputs to the functions
     %yp_shar 1, the mass of the outside system
-    yp_shar(1)=zb(1)+zs(1);
+    resMass=0.3;
+    yp_shar(1)=zb(1)+zs(1)+resMass;
     
     yp_shar=yp_shar;
     zp=zp;
@@ -21,7 +22,9 @@ intcon=1:numvars;
 func=@objprop;
 const=@conprop;
 
-options=gaoptimset('PlotFcn',@gaplotbestf,'Generations', 40, 'StallTimeLimit', 10, 'PopulationSize', 15);
+options=gaoptimset('PlotFcn',{@gaplotbestf},'Generations', 50, ...
+    'PopulationSize', 150,'CreationFcn', {@gacreationuniform}, ...
+    'SelectionFcn',{@selectionremainder}, 'FitnessLimit', 0.05,'Display','off' );
 
 %poolobj=gcp;
 

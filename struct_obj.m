@@ -23,6 +23,6 @@ function J_s=struct_obj(xs_loc,zs)
 %rod with the system optimizer's estimates/targets/what it told the
 %other subsystems.
     
-    J_s=sum((zs-ys).^2);
+    J_s=sum(((zs-ys)./ys).^2);
     
 end

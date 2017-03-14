@@ -42,12 +42,12 @@ function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
     %yp_6 - propulsion rpm acheived
     yp(6)=hover.rpm;
     %yp_7 - propulsion power used
-    yp(7)=hover.pelec;
+    yp(7)=4*hover.pelec;
     %yp_8 - propulsion prop diameter
     yp(8)=prop.diameter;
     
 %calculate objective
-    J_p=sum((zp-yp).^2);
+    J_p=sum(((zp-yp)./yp).^2);
     
     if isnan(J_p)
         J_p=inf;

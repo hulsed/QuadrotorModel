@@ -1,4 +1,4 @@
-function Js_=opt_struct(zb,zp,zs)
+function [Js_i,xs_min]=opt_struct(zb,zp,zs)
 
 %variable bounds
 LB=[1,1,1,1];
@@ -20,10 +20,10 @@ intcon=1:numvars;
 
 
 
-options=gaoptimset('PlotFcn',@gaplotbestf);
+options=gaoptimset('PlotFcn',@gaplotbestf, 'TolCon', 0.1,'Display','off');
 
 
-[xp_min,Js_,flags,outpt]=ga(@objstruct,numvars,[],[],[],[],LB,UB,@construct,intcon,options);
+[xs_min,Js_i,flags,outpt]=ga(@objstruct,numvars,[],[],[],[],LB,UB,@construct,intcon,options);
 
     function J_s=objstruct(xs_loc)
         J_s=struct_obj(xs_loc,zs);

@@ -8,9 +8,9 @@ function cs= struct_const(xs_loc, ys_shar)
     %ys_shar 2 - Motor RPM
     propRpm=ys_shar(2);
     %ys_shar 3 - propulsion mass
-    propMass=ys_shar(3);
+    propMass=ys_shar(3)/4;
     %ys_shar 4 - delivered thrust
-    propThrust=ys_shar(4);
+    propThrust=ys_shar(4)/4;
     
 %local variables
     %xp_loc 1 - choice of material
@@ -28,7 +28,7 @@ function cs= struct_const(xs_loc, ys_shar)
     motorDist=sepDist/sqrt(2); 
     minRodLength=max(0.01, motorDist-resFramewidth/2);       
     
-    cs(1)=rod.Length/minRodLength-1;
+    cs(1)=1-rod.Length/minRodLength;
     
     %cs_2 - rod must not meet vibrational requirements
     forcedFreq=propRpm/60; %converting to hz
@@ -42,5 +42,6 @@ function cs= struct_const(xs_loc, ys_shar)
     defl=propThrust/rod.Stiffness;
     
     cs(3)=defl/maxDefl-1;
-
+    
+    
 end
