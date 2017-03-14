@@ -45,4 +45,5 @@ function [prop,foil] = design_prop(x)
     
     prop.mass=mass;
     prop.cost=cost;
+    write_propfile(prop,foil);
 end
