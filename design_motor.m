@@ -1,6 +1,6 @@
 function motor = design_motor(xp_loc)
 
-    motorData = csvread('motortable.csv', 1, 2, [1, 2, 24, 9]); %load starting from 2nd row, 2nd col
+    motorData = csvread('motortable.csv', 1, 2, [1, 2, 12, 9]); %load starting from 2nd row, 2nd col
     
     % temp is our motor choice
     temp =  motorData(xp_loc(1), :);

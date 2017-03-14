@@ -1,8 +1,8 @@
 function [Jp_i,xp_min]=opt_prop(zb,zp,zs)
 
 %variable bounds
-LB=[1,  1,  1,  1,  1,  1,  1];
-UB=[24, 7,  12, 10, 10, 15, 15];
+LB=[1,  1,  1,  1,  1];
+UB=[5, 7,  12, 10, 15];
 numvars=length(UB);
 intcon=1:numvars;
 
@@ -22,8 +22,8 @@ intcon=1:numvars;
 func=@objprop;
 const=@conprop;
 
-options=gaoptimset('PlotFcn',{@gaplotbestf},'Generations', 50, ...
-    'PopulationSize', 150, 'FitnessLimit', 0.05,'Display','off' );
+options=gaoptimset('PlotFcn',{@gaplotbestf},'Generations', 100, ...
+    'PopulationSize', 50, 'FitnessLimit', 0.1,'Display','off' );
 
 %poolobj=gcp;
 

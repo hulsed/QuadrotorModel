@@ -7,10 +7,8 @@ function [prop,foil] = design_prop(xp_loc)
     % Propeller Calculations
     %prop.airfoil = propData(xp_loc(2), 1); % propeller prop.airfoil
     diameter = propData(xp_loc(3), 2)*0.0254; % diameter (inch->m)
-    angleRoot = propData(xp_loc(4), 3); % blade angle at root
-    angleTip = propData(xp_loc(5), 4); % blade angle at tip
-    chordRoot = propData(xp_loc(6), 5)*0.0254; % chord at root (inch->m)
-    chordTip = propData(xp_loc(7), 6)*0.0254; % chord at tip (inch->m)
+    angle = propData(xp_loc(4), 3); % blade angle at root
+    chord = propData(xp_loc(5), 5)*0.0254; % chord at root (inch->m)
     
     %Foil Calculations
     foil.Cl0=foilData(xp_loc(2),1);
@@ -27,12 +25,14 @@ function [prop,foil] = design_prop(xp_loc)
     
     %Assign prop characteristics to struct
     prop.diameter = diameter; % meters
-    prop.angleRoot = angleRoot; % blade angle at root
-    prop.angleTip = angleTip; % blade angle at tip
-    prop.chordRoot = chordRoot; % chord at root (inch->m)
-    prop.chordTip = chordTip; % chord at tip (inch->m)
+    prop.angleTip = angle; % blade angle at tip
+    prop.angleRoot = angle; % blade angle at root
+    prop.chordRoot=chord; % chord at root (inch->m)
+    prop.chordTip=chord; % chord at root (inch->m)
     
-    chordAvg=mean([chordRoot, chordTip]);
+    %prop.chordTip = chordTip; % chord at tip (inch->m)
+    
+    chordAvg=mean([prop.chordRoot, prop.chordTip]);
     foilnum=['NACA00' num2str(foil.Num)];
     avgThickness=0.01*foil.Num*chordAvg;
     xsArea=0.5*avgThickness*chordAvg; %assuming may be approximated as a triangle
@@ -45,4 +45,5 @@ function [prop,foil] = design_prop(xp_loc)
     
     prop.mass=mass;
     prop.cost=cost;
+    write_propfile(prop,foil);
 end
