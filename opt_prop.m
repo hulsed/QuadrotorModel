@@ -23,8 +23,7 @@ func=@objprop;
 const=@conprop;
 
 options=gaoptimset('PlotFcn',{@gaplotbestf},'Generations', 50, ...
-    'PopulationSize', 150,'CreationFcn', {@gacreationuniform}, ...
-    'SelectionFcn',{@selectionremainder}, 'FitnessLimit', 0.05,'Display','off' );
+    'PopulationSize', 150, 'FitnessLimit', 0.05,'Display','off' );
 
 %poolobj=gcp;
 
