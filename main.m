@@ -51,10 +51,10 @@ elseif method==2
 
 
 
-options = psoptimset('PlotFcn', @psplotbestf,'Display','iter', 'Cache', 'on',...
-    'PenaltyFactor', 1000, 'TolBind', 0.3, 'SearchMethod', {@searchneldermead},...
-    'PollMethod', 'MADSPositiveBasisNp1','InitialMeshSize', 1000 );
-[x_star,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+options = psoptimset('Display','iter', 'Cache', 'on',...
+    'PenaltyFactor', 1000, 'TolBind', 0.3,'PollMethod', 'MADSPositiveBasisNp1',...
+    'InitialMeshSize', 1000 );
+[x_star,fval,exitflag,output]=patternsearch(func,startpt, [], [], [], [], LB, UB, const, options)
 
 elseif method==3
 options = optimset('Display','iter','PlotFcns',@optimplotfval);

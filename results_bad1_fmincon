@@ -1,0 +1,306 @@
+Iteration   Func-count     min f(x)         Procedure
+     0            1          -1918.4         
+     1           15         -2044.27         initial simplex
+     2           17         -2200.97         expand
+     3           18         -2200.97         reflect
+     4           19         -2200.97         reflect
+     5           20         -2200.97         reflect
+     6           21         -2200.97         reflect
+     7           22         -2200.97         reflect
+     8           23         -2200.97         reflect
+     9           24         -2200.97         reflect
+    10           25         -2200.97         reflect
+    11           26         -2200.97         reflect
+    12           27         -2200.97         reflect
+    13           28         -2200.97         reflect
+    14           29         -2200.97         reflect
+    15           31         -2389.33         expand
+    16           32         -2389.33         reflect
+    17           33         -2389.33         reflect
+    18           34         -2389.33         reflect
+    19           35         -2389.33         reflect
+    20           36         -2389.33         reflect
+    21           37         -2389.33         reflect
+    22           38         -2389.33         reflect
+    23           40         -2639.35         expand
+    24           41         -2639.35         reflect
+    25           42         -2639.35         reflect
+    26           43         -2639.35         reflect
+    27           44         -2639.35         reflect
+    28           45         -2639.35         reflect
+    29           46         -2639.35         reflect
+30           48          -3022.3         expand
+    31           49          -3022.3         reflect
+    32           50          -3022.3         reflect
+    33           51          -3022.3         reflect
+    34           53          -3022.3         contract inside
+    35           54          -3022.3         reflect
+    36           55          -3022.3         reflect
+    37           57         -3524.02         expand
+    38           58         -3524.02         reflect
+    39           59         -3524.02         reflect
+    40           60         -3524.02         reflect
+    41           61         -3524.02         reflect
+    42           62         -3524.02         reflect
+    43           64         -4122.48         expand
+    44           65         -4122.48         reflect
+    45           66         -4122.48         reflect
+    46           67         -4122.48         reflect
+    47           68         -4122.48         reflect
+    48           69         -4122.48         reflect
+    49           71         -5162.82         expand
+    50           72         -5162.82         reflect
+    51           73         -5162.82         reflect
+    52           74         -5162.82         reflect
+    53           75         -5162.82         reflect
+    54           77         -7361.65         expand
+    55           78         -7361.65         reflect
+    56           79         -7361.65         reflect
+    57           81         -7361.65         contract inside
+    58           82         -7361.65         reflect
+    59           83         -7361.65         reflect
+    60           84         -7361.65         reflect
+    61           85         -7361.65         reflect
+    62           87         -7361.65         contract inside
+    63           89         -12729.1         expand
+    64           90         -12729.1         reflect
+    65           91         -12729.1         reflect
+    66           92         -12729.1         reflect
+    67           93         -12729.1         reflect
+    68           94         -12729.1         reflect
+    69           96         -33170.4         expand
+    70           97         -33170.4         reflect
+    71           98         -33170.4         reflect
+    72           99         -33170.4         reflect
+    73          100         -33170.4         reflect
+    74          102         -38188.9         reflect
+    75          104         -53519.9         reflect
+    76          106         -85706.4         reflect
+    77          108         -85706.4         contract inside
+    78          110          -119476         reflect
+    79          111          -119476         reflect
+    80          113          -119476         contract inside
+    81          115          -119476         contract inside
+    82          117          -119476         contract inside
+    83          119          -226175         reflect
+    84          121          -226175         contract inside
+    85          123          -966717         reflect
+    86          125          -966717         contract inside
+    87          127          -966717         contract inside
+    88          129          -966717         contract inside
+    89          131     -1.37213e+06         reflect
+    90          133     -1.37213e+06         contract inside
+    91          135     -1.37213e+06         contract inside
+    92          137     -1.37213e+06         contract inside
+    93          139     -1.37213e+06         contract inside
+    94          141     -1.37213e+06         contract inside
+    95          143     -1.37213e+06         contract inside
+    96          144     -1.37213e+06         reflect
+    97          146     -1.37213e+06         contract inside
+    98          148     -1.37213e+06         contract inside
+    99          150     -8.78656e+06         reflect
+   100          152     -8.78656e+06         contract inside
+   101          154     -8.78656e+06         contract inside
+   102          156     -8.78656e+06         contract inside
+   103          158     -8.78656e+06         contract inside
+   104          160     -8.78656e+06         contract inside
+   105          162     -8.78656e+06         contract inside
+   106          164     -8.78656e+06         contract inside
+   107          166     -1.73595e+07         reflect
+   108          168     -1.73595e+07         contract inside
+   109          170     -1.73595e+07         contract inside
+   110          172     -1.73595e+07         contract inside
+   111          174     -1.73595e+07         contract inside
+   112          176     -1.73595e+07         contract inside
+   113          178     -1.73595e+07         contract inside
+   114          180     -1.73595e+07         contract inside
+   115          181     -1.73595e+07         reflect
+   116          183     -1.73595e+07         contract inside
+   117          185     -1.73595e+07         contract inside
+   118          187     -1.73595e+07         contract inside
+   119          189     -1.73595e+07         contract inside
+   120          191     -1.73595e+07         contract inside
+   121          193     -1.73595e+07         contract inside
+   122          194     -1.73595e+07         reflect
+   123          196     -1.73595e+07         contract inside
+   124          198     -1.73595e+07         contract inside
+   125          200     -1.73595e+07         contract inside
+   126          202     -1.73595e+07         contract inside
+   127          204     -1.73595e+07         contract inside
+   128          206     -1.73595e+07         contract inside
+   129          208     -1.73595e+07         contract inside
+   130          210     -1.73595e+07         contract inside
+   131          212     -1.73595e+07         contract inside
+   132          214     -1.73595e+07         contract inside
+   133          216     -1.73595e+07         contract inside
+   134          218     -1.73595e+07         contract inside
+   135          220     -1.73595e+07         contract inside
+   136          222     -1.73595e+07         contract inside
+   137          223     -1.73595e+07         reflect
+   138          225     -1.73595e+07         contract inside
+   139          227     -1.73595e+07         contract inside
+   140          229     -1.73595e+07         contract inside
+   141          231     -1.73595e+07         contract inside
+   142          233     -1.73595e+07         contract inside
+   143          235     -1.73595e+07         contract inside
+   144          237     -1.73595e+07         contract inside
+   145          239     -1.73595e+07         contract inside
+   146          241     -1.73595e+07         contract inside
+   147          243     -1.73595e+07         contract inside
+   148          245     -1.73595e+07         contract inside
+   149          247     -1.73595e+07         contract inside
+   150          249     -1.73595e+07         contract inside
+   151          251     -1.73595e+07         contract inside
+   152          252     -1.73595e+07         reflect
+   153          254     -1.73595e+07         contract inside
+   154          256     -1.73595e+07         contract inside
+   155          258     -1.73595e+07         contract inside
+   156          260     -1.73595e+07         contract inside
+   157          262     -1.73595e+07         contract inside
+   158          264     -1.73595e+07         contract inside
+   159          266     -1.73595e+07         contract inside
+   160          268     -2.18324e+08         reflect
+   161          270     -2.18324e+08         contract inside
+   162          272     -2.18324e+08         contract inside
+   163          274     -2.18324e+08         contract inside
+   164          276     -2.18324e+08         contract inside
+   165          278     -2.18324e+08         contract inside
+   166          280     -2.18324e+08         contract inside
+   167          282     -2.18324e+08         contract inside
+   168          284     -2.18324e+08         contract inside
+   169          286     -2.18324e+08         contract inside
+   170          288     -2.18324e+08         contract inside
+   171          290     -2.18324e+08         contract inside
+   172          292     -2.18324e+08         contract inside
+   173          293     -2.18324e+08         reflect
+   174          295     -2.18324e+08         contract inside
+   175          297     -2.18324e+08         contract inside
+   176          299     -2.18324e+08         contract inside
+   177          301     -2.18324e+08         contract inside
+   178          303     -2.18324e+08         contract inside
+   179          305     -2.18324e+08         contract inside
+   180          306     -2.18324e+08         reflect
+   181          308     -2.18324e+08         contract inside
+   182          310     -2.18324e+08         contract inside
+   183          312     -2.18324e+08         contract inside
+   184          314     -2.18324e+08         contract inside
+   185          316     -2.18324e+08         contract inside
+   186          318     -2.18324e+08         contract inside
+   187          320     -2.18324e+08         contract inside
+   188          321     -2.18324e+08         reflect
+   189          323     -2.18324e+08         contract inside
+   190          325     -2.18324e+08         contract inside
+   191          327     -2.18324e+08         contract inside
+   192          329     -2.18324e+08         contract inside
+   193          331     -2.18324e+08         contract inside
+   194          333     -2.18324e+08         contract inside
+   195          335     -2.18324e+08         contract inside
+   196          337     -2.18324e+08         contract inside
+   197          339     -2.18324e+08         contract inside
+   198          341     -1.21428e+09         reflect
+   199          343     -1.21428e+09         contract inside
+   200          345     -1.21428e+09         contract inside
+   201          347     -1.21428e+09         contract inside
+   202          349     -1.21428e+09         contract inside
+   203          351     -1.21428e+09         contract inside
+   204          353     -1.21428e+09         contract inside
+   205          354     -1.21428e+09         reflect
+   206          356     -1.21428e+09         contract inside
+   207          358     -1.21428e+09         contract inside
+   208          360     -1.21428e+09         contract inside
+   209          362     -1.21428e+09         contract inside
+   210          364     -1.21428e+09         contract inside
+   211          365     -1.21428e+09         reflect
+   212          367     -1.21428e+09         contract inside
+   213          369     -1.21428e+09         contract inside
+   214          371     -1.21428e+09         contract inside
+   215          373     -1.21428e+09         contract inside
+   216          375     -1.21428e+09         contract inside
+   217          377     -1.21428e+09         contract inside
+   218          378     -1.21428e+09         reflect
+   219          380     -1.21428e+09         contract inside
+   220          382     -1.21428e+09         contract inside
+   221          384     -1.21428e+09         contract inside
+   222          386     -1.21428e+09         contract inside
+   223          388     -1.21428e+09         contract inside
+   224          390     -1.21428e+09         contract inside
+   225          392     -1.21428e+09         contract inside
+   226          394     -1.21428e+09         contract inside
+   227          396     -1.21428e+09         contract inside
+   228          398     -1.21428e+09         contract inside
+   229          400     -1.21428e+09         contract inside
+   230          402     -1.21428e+09         contract inside
+   231          404     -1.21428e+09         contract inside
+   232          405     -1.21428e+09         reflect
+   233          407     -1.21428e+09         contract inside
+   234          409     -1.21428e+09         contract inside
+   235          411     -1.21428e+09         contract inside
+   236          413     -1.21428e+09         contract inside
+   237          415     -1.21428e+09         contract inside
+   238          417     -1.21428e+09         contract inside
+   239          419     -1.21428e+09         contract inside
+   240          421     -1.21428e+09         contract inside
+   241          423     -1.21428e+09         contract inside
+   242          425     -1.21428e+09         contract inside
+   243          427     -1.21428e+09         contract inside
+   244          429     -1.21428e+09         contract inside
+   245          431     -1.21428e+09         contract inside
+   246          433     -1.21428e+09         contract inside
+   247          435     -1.21428e+09         contract inside
+   248          437     -1.21428e+09         contract inside
+   249          439     -1.65075e+10         reflect
+   250          441     -1.65075e+10         contract inside
+   251          443     -1.65075e+10         contract inside
+   252          445     -1.65075e+10         contract inside
+   253          447     -1.65075e+10         contract inside
+   254          449     -1.65075e+10         contract inside
+   255          451     -1.65075e+10         contract inside
+   256          453     -1.65075e+10         contract inside
+   257          455     -1.65075e+10         contract inside
+   258          457     -1.65075e+10         contract inside
+   259          459     -1.65075e+10         contract inside
+   260          461     -1.65075e+10         contract inside
+   261          463     -1.65075e+10         contract inside
+   262          465     -1.65075e+10         contract inside
+   263          467     -1.65075e+10         contract inside
+   264          469     -1.65075e+10         contract inside
+   265          471     -1.65075e+10         contract inside
+   266          473     -1.65075e+10         contract inside
+   267          475     -1.65075e+10         contract inside
+   268          477     -2.19484e+11         reflect
+   269          479     -2.19484e+11         contract inside
+   270          481     -2.19484e+11         contract inside
+   271          483     -2.19484e+11         contract inside
+   272          485     -2.19484e+11         contract inside
+
+Jb_i =
+
+   5.1756e-10
+
+
+Jp_i =
+
+    0.0934
+
+
+Js_i =
+
+   1.9980e-07
+
+the optimal local parameters are:
+
+xb_opt =
+
+     2     6     1
+
+
+xp_opt =
+
+     1     5     2     5
+
+
+xs_opt =
+
+     1     4     1     4
+
+   
