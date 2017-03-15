@@ -1,12 +1,36 @@
 function Fc=sys_objc(z)
 F=sys_obj(z);
-constraints=sys_const(z);
+[temp,constraints]=sys_const(z);
 for i=1:length(constraints)
     if constraints(i)>0.1
-        conviol=constraints(i);
+        conviol(i)=constraints(i);
     else
-        conviol=0;
+        conviol(i)=0;
     end
 end
-Fc=F+2000*sum(conviol)^2;
+infeas=sum(conviol);
+
+
+    if infeas<0.1
+        penalty=0;
+        Fc=F+penalty;
+    elseif 0.1<=infeas<0.2
+        penalty=100;
+        Fc=F+penalty;
+    elseif 0.2<=infeas<0.5
+        penalty=1000;
+        Fc=F+penalty;
+    elseif 0.5<=infeas<2.0
+        penalty=10000;
+        Fc=F+penalty;
+    elseif 2.0<=infeas<10
+        penalty=100000;
+        Fc=F+penalty;
+    elseif 10<=infeas<20
+        penalty=10e8;
+        Fc=F+penalty;
+    elseif 20<=infeas
+        Fc=10e10;
+    end
+
 end

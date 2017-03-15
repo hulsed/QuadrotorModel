@@ -1,4 +1,4 @@
-function [J_i,eq]=sys_const(z)
+function [eq,J_i]=sys_const(z)
 
 %convert single vector into labeled vectors
 zb=z(1:4);
@@ -50,7 +50,7 @@ xs_opt=temp3;
 
 %creating a single vector of constraints
  J_i=[Jb_i, Jp_i, Js_i];
-% eq=[];
+ eq=[];
 % disp(['J_i= ', num2str(J_i)])
 % disp(['z=   ', num2str(z)])
 % disp(['xb_loc=', num2str(xb_opt)] )

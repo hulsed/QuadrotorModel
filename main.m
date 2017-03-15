@@ -1,5 +1,4 @@
 
-
 %NOTE: find a good starting point.
 
     %zb_1 - battery mass
@@ -39,19 +38,29 @@ derivx=[scaleb, scalep, scales];
 
 startpt=[zb0,zp0,zs0];
 
+method=2;
+
 func=@sys_obj;
 const=@sys_const;
 
-%options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
-%    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}, 'FinDiffRelStep', derivx);
-%options = psoptimset('PlotFcn', @psplotbestf,'Display','iter', 'Cache', 'off',...
- %   'PenaltyFactor', 1000, 'TolCon', 0.3, 'SearchMethod', {@searchneldermead});
-%[x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+if method==1
+options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
+    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}, 'FinDiffRelStep', derivx);
+[x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+elseif method==2
 
+
+
+options = psoptimset('PlotFcn', @psplotbestf,'Display','iter', 'Cache', 'on',...
+    'PenaltyFactor', 1000, 'TolBind', 0.3, 'SearchMethod', {@searchneldermead},...
+    'PollMethod', 'MADSPositiveBasisNp1','InitialMeshSize', 1000 );
+[x_star,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+
+elseif method==3
 options = optimset('Display','iter','PlotFcns',@optimplotfval);
-f_adapted=@sys_objc
+f_adapted=@sys_objc;
 [x_star,fval,exitflag,output]=fminsearch(f_adapted, startpt,options)
-
+end
 
 
 %[x,fval,exitflag,output]=patternsearch(func,startpt, [], [], [], [], LB, UB, const, options)
@@ -66,31 +75,30 @@ xb_star=x_star(1:4);
 xp_star=x_star(5:12);
 xs_star=x_star(13:14);
 
-parfor i=1:3
+
+
+%this is where subsystem responses are calculated
+for i=1:3
     if i==1
         %battery: do an exhaustive search of the possible configurations (small
         %space, little computational cost)
-        [temp(i),temp1(i,:)]=opt_bat(xb_star,xp_star,xs_star)
+        [temp(i),temp1]=opt_bat(xb_star,xp_star,xs_star);
 
     elseif i==2
         %propeller: ga?
-        [temp(i),temp2(i-1,:)]=opt_prop(xb_star,xp_star,xs_star)
+        [temp(i),temp2]=opt_prop(xb_star,xp_star,xs_star);
     elseif i==3
         %structure: use ga
-        [temp(i),temp3(i-2,:) ]=opt_struct(zb,zp,zs)
+        [temp(i),temp3]=opt_struct(xb_star,xp_star,xs_star);
     end
 end
 
 Jb_i=temp(1)
 Jp_i=temp(2)
 Js_i=temp(3)
-disp('the optimal local parameters are:')
+
 xb_opt=temp1
 xp_opt=temp2
 xs_opt=temp3
-disp('with targets:')
-zb
-zp
-zs
 
 
