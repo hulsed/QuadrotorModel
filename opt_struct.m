@@ -52,8 +52,7 @@ for i=LB(1):UB(1)
             
         end
     end
-
-    
+   
     
 end
 % options=gaoptimset('PlotFcn',@gaplotbestf, 'TolCon', 0.1,'Display','off','FitnessLimit', 0.01);
@@ -68,4 +67,9 @@ end
 %         cs=struct_const(xs_loc, ys_shar);
 %         ceq=[];
 %     end
+if not(exist('J_s'))
+disp('why???')
+end
+
+
 end

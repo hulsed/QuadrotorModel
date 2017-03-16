@@ -74,10 +74,20 @@ switch mode
             else
                 crayon = sscanf(line, '%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f');
             end
-            qpropoutputV(i,:) = crayon';
-            %line = reader.readLine; % read next line
+            try
+                qpropoutputV(i,:) = crayon';
+                %line = reader.readLine; % read next line
+            catch error
+                qpropoutputV=NaN(1,19)
+            end
+            
         end   
 end
+
+if not(exist('qpropoutputV'))
+    qpropoutputV=NaN(1,19);
+end
+    
 %END JAVA CODE
     % Whichever way we got the output of QProp, get our individual outputs
     perf.velocity=qpropoutputV(:,1);

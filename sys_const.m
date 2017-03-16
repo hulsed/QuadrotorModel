@@ -30,7 +30,11 @@ for i=1:3
         [temp(i),temp2,temp22]=opt_prop(zb,zp,zs);
     elseif i==3
         %structure: use ga
+        try
         [temp(i),temp3,temp33]=opt_struct(zb,zp,zs);
+        catch error
+        [temp(i),temp3,temp33]=opt_struct(zb,zp,zs);
+        end
     end
 end
 

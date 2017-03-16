@@ -5,7 +5,7 @@
     %zb_2 - battery cost
     %zp_3 - battery energy stored
     zb0=[0.33,  27.06,   1.7582e5];
-    LBb=[0,     0,      0];
+    LBb=[0.0001,     0.0001,      0.0001];
     UBb=[5,     200,     1e7];
     scaleb=[0.01, 1, 500];
     
@@ -16,7 +16,7 @@
     %zp_5 - propulsion rpm acheived
     %zp_6 - propulsion diam
     zp0=[0.06,  120,    2.909,  22.28,   7948,  0.203];
-    LBp=[0,     0,      0,      0,      0,      0];
+    LBp=[0.0001,     0.0001,      0.0001,      0.0001,      0.0001,      0.0001];
     UBp=[1,     600,    36,     300,    36000,  1];
     scalep=[0.001, 10,  0.1,    0.1,    100,    0.01]; 
     
@@ -24,7 +24,7 @@
     %zs_1 - structures mass
     %zs_2 - structures cost
     zs0=[0.0709,2.6292];
-    LBs=[0,     0];
+    LBs=[0.0001,     0.0001];
     UBs=[1,     5];
     scales=[0.001, 0.01];
 
@@ -35,7 +35,7 @@ derivx=[scaleb, scalep, scales];
 
 startpt=[zb0,zp0,zs0];
 
-method=2;
+method=4;
 
 func=@sys_obj;
 const=@sys_const;
@@ -57,6 +57,12 @@ elseif method==3
 options = optimset('Display','iter','PlotFcns',@optimplotfval);
 f_adapted=@sys_objc;
 [x_star,fval,exitflag,output]=fminsearch(f_adapted, startpt,options)
+
+elseif method==4
+options = gaoptimset('Display', 'iter','PopulationSize', 10,'PlotFcn', {@gaplotbestf}); %, 'FinDiffRelStep', derivx);
+
+[x,fval,exitflag,output]=ga(func,numel(UB), [], [], [], [], LB, UB, const, options)
+
 end
 
 

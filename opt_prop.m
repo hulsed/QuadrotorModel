@@ -1,7 +1,7 @@
 function [Jp_i,xp_min,yp_min]=opt_prop(zb,zp,zs)
 
 %variable bounds
-LB=[0,0];
+LB=[0,0.001];
 UB=[90,0.05];
 xp_loc0=[10,0.0127];
 numvars=length(UB);
@@ -25,20 +25,20 @@ intcon=1:numvars;
 func=@objprop;
 const=@conprop;
 
-options=optimoptions('fmincon', 'Display','off'); %,'Display','iter' );
+options=optimoptions('fmincon', 'Display','off', 'ObjectiveLimit', 0.05,...
+'MaxIter', 100, 'Algorithm','sqp'); %,'Display','iter' );
+
+try
 [xp_min,Jp_i,flags,outpt]=fmincon(@objprop,xp_loc0,[],[],[],[],LB,UB,@conprop, options);
-
-%options=gaoptimset('PlotFcn',{@gaplotbestf},'Generations', 100, ...
-%    'PopulationSize', 50, 'FitnessLimit', 0.1,'Display','off' );
-
-%poolobj=gcp;
-
-%updateAttachedFiles(poolobj);
-
-%[xp_min,Jp_i,flags,outpt]=ga(@objprop,numvars,[],[],[],[],LB,UB,@conprop,intcon,options);
-
 %finds the yp output and constraints for the last pt
 [temp,cp_min,yp_min]=prop_objc(xp_min,zp,yp_shar);
+catch
+Jp_i=100;
+yp_min=5*zp;
+xp_min=[0,0];
+end
+
+
 
     function J_p=objprop(xp_loc)
     if ~isequal(xp_loc,lastpt)
