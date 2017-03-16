@@ -1,4 +1,4 @@
-function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
+function [J_p,cp,yp] =prop_objc(xp_loc,zp, yp_shar)
 
 %xp_loc, the local varables for propulsion
 %cp, the local constraint value
@@ -7,18 +7,25 @@ function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
 %note: due to the nature of the problem, constraints may need to be
 %calculated inline. That is the meaning of calling this "objc"
 
+
 %local variables
-    %xp_loc 2 - foil
-    %xp_loc 3 - diam
-    %xp_loc 4 - a
-    %xp_loc 5 - c
+    
+    %xp_loc 2 - angle a
+    %xp_loc 3 - chord c
+    
+    
 %shared variables from other subsystems
     %yb_shar 1 - outside system mass
     outsysMass=yp_shar(1);
+    %yb_shar 1 - outside system mass
+    outsysMass=yp_shar(1);
+    
+%shared variable in this subsystem (but optimized at the system level
+    %diameter=yp_shar(2);
 
 %construct properties of each
     motor = design_motor(xp_loc);
-    [prop,foil] = design_prop(xp_loc);
+    [prop,foil] = design_prop(xp_loc,yp_shar);
     sysMass=outsysMass+4*(motor.Mass+prop.mass);
 
 %call performance model
@@ -34,17 +41,25 @@ function [J_p,cp] =prop_objc(xp_loc,zp, yp_shar)
     yp(3)=hover.volts;
     %yp_4 - propulsion current applied
     yp(4)=4*hover.amps;
-    %yp_5 - propulsion thrust acheived
-    yp(5)=4*hover.thrust;
-    %yp_6 - propulsion rpm acheived
-    yp(6)=hover.rpm;
-    %yp_7 - propulsion power used
-    yp(7)=4*hover.pelec;
-    %yp_8 - propulsion prop diameter
-    yp(8)=prop.diameter;
+    %yp_5 - propulsion rpm acheived
+    yp(5)=hover.rpm;
     
 %calculate objective
-    J_p=sum(((zp-yp)./zp).^2);
+    Jp(1)=sum(((zp(1)-yp(1))./zp(1)).^2);
+    
+    if yp(2)<zp(2)
+        Jp(2)=0;
+    else
+        Jp(2)=sum(((zp(2)-yp(2))./zp(2)).^2);
+    end
+    
+    Jp(3)=sum(((zp(3)-yp(3))./zp(3)).^2);
+    
+    Jp(4)=sum(((zp(4)-yp(4))./zp(4)).^2);
+    
+    Jp(5)=sum(((zp(5)-yp(5))./zp(5)).^2);
+    
+    J_p=sum(Jp);
     
     if isnan(J_p)
         J_p=inf;

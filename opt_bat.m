@@ -1,4 +1,4 @@
-function [Jb_i,xb_min]=opt_bat(zb,zp,zs)
+function [Jb_i,xb_min,yb_min]=opt_bat(zb,zp,zs)
 
 %bounds [6,6,4]
 UB=[6,6,4];
@@ -20,7 +20,7 @@ for i=1:UB(1)
           %checked design point
           xb_loc=[i,j,k];
           %objective J_b (acheieve consistency with target)
-          J_b=bat_obj(xb_loc,zb);
+          [J_b,yb]=bat_obj(xb_loc,zb);
           %local constraint
           cb=bat_const(xb_loc, yb_shar);
           
@@ -38,6 +38,7 @@ for i=1:UB(1)
           if obj<min_obj
               min_obj=obj;
               xb_min=xb_loc;
+              yb_min=yb;
               Jb_i=J_b;
           end
                     

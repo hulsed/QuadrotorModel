@@ -48,7 +48,7 @@ switch mode
         while ~isequal(line, []) % Keep reading until next line is empty
             line = char(line);
             a=a+1;
-            if isequal(line, ' ') || isequal(line, '\n') || isequal(line, '') || not(isequal(a,18))
+            if isequal(line, ' ') || isequal(line, '\n') || isequal(line, '') || not(isequal(a,18))|| isequal(line(5),'a')
                 % Skip unimportant line, read next line and continue
                 line = reader.readLine;
                 continue

@@ -3,25 +3,22 @@
 
     %zb_1 - battery mass
     %zb_2 - battery cost
-    %zb_3 - battery voltage allowed
-    %zp_4 - battery energy stored
-    zb0=[0.33,  27.06,  22.2,   1.7582e5];
-    LBb=[0,     0,      0,      0];
-    UBb=[5,     200,    48,     1e7];
-    scaleb=[0.01, 1, 0.5, 500];
+    %zp_3 - battery energy stored
+    zb0=[0.33,  27.06,   1.7582e5];
+    LBb=[0,     0,      0];
+    UBb=[5,     200,     1e7];
+    scaleb=[0.01, 1, 500];
     
     %zp_1 - propulsion mass
     %zp_2 - propulsion cost
     %zp_3 - propulsion voltage applied
     %zp_4 - propulsion current applied
-    %zp_5 - propulsion thrust acheived
-    %zp_6 - propulsion rpm acheived
-    %zp_7 - propulsion power used
-    %zp_7 - propulsion diam
-    zp0=[0.06,  120,    2.909,  22.28,  7.52,   7948,   64.84,  0.203];
-    LBp=[0,     0,      0,      0,      0,      0,      0,      0];
-    UBp=[1,     600,    36,     300,    100,    36000,  500,    1];
-    scalep=[0.001, 10,  0.1,    0.1,    0.1,    100,    1,      0.01]; 
+    %zp_5 - propulsion rpm acheived
+    %zp_6 - propulsion diam
+    zp0=[0.06,  120,    2.909,  22.28,   7948,  0.203];
+    LBp=[0,     0,      0,      0,      0,      0];
+    UBp=[1,     600,    36,     300,    36000,  1];
+    scalep=[0.001, 10,  0.1,    0.1,    100,    0.01]; 
     
     
     %zs_1 - structures mass
@@ -38,14 +35,14 @@ derivx=[scaleb, scalep, scales];
 
 startpt=[zb0,zp0,zs0];
 
-method=2;
+method=1;
 
 func=@sys_obj;
 const=@sys_const;
 
 if method==1
 options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
-    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}, 'FinDiffRelStep', derivx);
+    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}) %, 'FinDiffRelStep', derivx);
 [x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
 elseif method==2
 

@@ -10,38 +10,31 @@ function cs= struct_const(xs_loc, ys_shar)
     %ys_shar 3 - propulsion mass
     propMass=ys_shar(3)/4;
     %ys_shar 4 - delivered thrust
-    propThrust=ys_shar(4)/4;
+    OutsideSysMass=ys_shar(4);
     
 %local variables
-    %xp_loc 1 - choice of material
+    %xp_loc 1 - material
     %xp_loc 2 - diameter
-    %xp_loc 3 - thickness
-    %xp_loc 4 - length
+    %xp_loc 2 - thickness
 
 %constructing rod from appropriate data/calcs
-    rod = design_rod(xs_loc);
+    rod = design_rod(xs_loc,ys_shar);
 
 %local constraint calcs
-    %cs_1 - rod must be long enough to prevent collision
-    resFramewidth=0.075;
-    sepDist=1.25*propDiameter;
-    motorDist=sepDist/sqrt(2); 
-    minRodLength=max(0.01, motorDist-resFramewidth/2);       
-    
-    cs(1)=1-rod.Length/minRodLength;
-    
-    %cs_2 - rod must not meet vibrational requirements
+   
+    %cs_1 - rod must meet vibrational requirements
     forcedFreq=propRpm/60; %converting to hz
     minnatFreq=2*forcedFreq; %natural frequency must be two times the forced frequency.
     natFreq=sqrt(rod.Stiffness./(0.5*rod.Mass+propMass/4))/(2*pi);
     
-    cs(2)=1-natFreq/minnatFreq;
+    cs(1)=1-natFreq/minnatFreq;
     
-    %cs_3 - rod must meet deflection requirements
+    %cs_2 - rod must meet deflection requirements--must hold up system on
+    %its own.
     maxDefl=0.01*rod.Length;
-    defl=propThrust/rod.Stiffness;
-    
-    cs(3)=defl/maxDefl-1;
+    forceheld=9.81*(OutsideSysMass+4*rod.Mass)/4;
+    defl=forceheld/rod.Stiffness;
+    cs(2)=defl/maxDefl-1;
     
     
 end
