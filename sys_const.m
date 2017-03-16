@@ -1,4 +1,4 @@
-function [ineq,J_i]=sys_const(z)
+function [J_ineq,J_eq]=sys_const(z)
 
 %convert single vector into labeled vectors
 zb=z(1:3);
@@ -63,41 +63,41 @@ ys_opt=temp33;
         if yb_opt(i)<zb(i)
             Jb(i)=0;
         else
-            Jb(i)=((zb(i)-yb_opt(i))./zb(i)).^2;
+            Jb(i)=((zb(i)-yb_opt(i))./zb(i));
         end
     end
-    Jb(3)=((zb(i)-yb_opt(i))./zb(i)).^2;
-
-    J_b=sum(Jb);
+    
+    Jb(3)=((zb(i)-yb_opt(i))./zb(i));
 
 %propulsion
-    Jp(1)=sum(((zp(1)-yp_opt(1))./zp(1)).^2);
+    Jp(1)=(zp(1)-yp_opt(1))./zp(1);
     
     if yp_opt(2)<zp(2)
         Jp(2)=0;
     else
-        Jp(2)=sum(((zp(2)-yp_opt(2))./zp(2)).^2);
+        Jp(2)=(zp(2)-yp_opt(2))./zp(2);
     end
     
-    Jp(3)=sum(((zp(3)-yp_opt(3))./zp(3)).^2);
+    Jp(3)=(zp(3)-yp_opt(3))./zp(3);
     
-    Jp(4)=sum(((zp(4)-yp_opt(4))./zp(4)).^2);
+    Jp(4)=(zp(4)-yp_opt(4))./zp(4);
     
-    Jp(5)=sum(((zp(5)-yp_opt(5))./zp(5)).^2);
+    Jp(5)=(zp(5)-yp_opt(5))./zp(5);
 
 %structures
     if ys_opt(1)<zs(1)
         Js(1)=0;
     else
-        Js(1)=((zs(1)-ys_opt(1))/zs(1))^2;
+        Js(1)=(zs(1)-ys_opt(1))/zs(1);
     end
     if ys_opt(2)<zs(2)
         Js(2)=0;
     else
-        Js(2)=((zs(2)-ys_opt(2))/zs(2))^2;
+        Js(2)=(zs(2)-ys_opt(2))/zs(2);
     end
 
-J_i=[Jb,Jp,Js];
+J_ineq=[Jb(1),Jb(2),Jp(2), Js(1), Js(2)];
+J_eq=[Jb(3), Jp(1), Jp(3), Jp(4), Jp(5)];
 
 
  ineq=[];

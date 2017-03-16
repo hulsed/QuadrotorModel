@@ -40,12 +40,6 @@ options=optimoptions('fmincon', 'Display','off'); %,'Display','iter' );
 %finds the yp output and constraints for the last pt
 [temp,cp_min,yp_min]=prop_objc(xp_min,zp,yp_shar);
 
-%makes system level see if the target is unrealizable due to not meeting
-%local constraints
-if any(cp_min>=0.01)
-    yp_min=3.*zp;
-end
-
     function J_p=objprop(xp_loc)
     if ~isequal(xp_loc,lastpt)
         [myJ_p,mycp] =prop_objc(xp_loc,zp, yp_shar);

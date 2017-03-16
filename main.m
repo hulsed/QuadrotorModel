@@ -35,20 +35,20 @@ derivx=[scaleb, scalep, scales];
 
 startpt=[zb0,zp0,zs0];
 
-method=1;
+method=2;
 
 func=@sys_obj;
 const=@sys_const;
 
 if method==1
 options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
-    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}) %, 'FinDiffRelStep', derivx);
+    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}); %, 'FinDiffRelStep', derivx);
 [x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
 elseif method==2
 
 
 
-options = psoptimset('Display','iter', 'Cache', 'on',...
+options = psoptimset('Display','iter', 'Cache', 'on', 'PlotFcn', {@psplotbestf},...
     'PenaltyFactor', 1000, 'TolBind', 0.3,'PollMethod', 'MADSPositiveBasisNp1',...
     'InitialMeshSize', 1000 );
 [x_star,fval,exitflag,output]=patternsearch(func,startpt, [], [], [], [], LB, UB, const, options)
