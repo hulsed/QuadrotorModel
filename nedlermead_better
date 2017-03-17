@@ -1,0 +1,256 @@
+ Iteration   Func-count     min f(x)         Procedure
+     0            1          4369.48         
+     1           12          3785.13         initial simplex
+     2           13          3785.13         reflect
+     3           14          3785.13         reflect
+     4           15          3785.13         reflect
+     5           17           2745.6         expand
+     6           18           2745.6         reflect
+     7           19           2745.6         reflect
+     8           20           2745.6         reflect
+     9           21           2745.6         reflect
+    10           22           2745.6         reflect
+    11           23           2745.6         reflect
+    12           25          2510.83         expand
+    13           26          2510.83         reflect
+    14           27          2510.83         reflect
+    15           29          1785.26         expand
+    16           30          1785.26         reflect
+    17           31          1785.26         reflect
+    18           32          1785.26         reflect
+    19           33          1785.26         reflect
+    20           34          1785.26         reflect
+    21           35          1785.26         reflect
+    22           36          1785.26         reflect
+    23           37          1785.26         reflect
+    24           38          1785.26         reflect
+    25           39          1785.26         reflect
+    26           41           1057.9         expand
+    27           43           1057.9         contract outside
+    28           44           1057.9         reflect
+    29           45           1057.9         reflect
+    30           46           1057.9         reflect
+    31           47           1057.9         reflect
+    32           48           1057.9         reflect
+    33           49           1057.9         reflect
+    34           50           1057.9         reflect
+    35           51           1057.9         reflect
+    36           52           1057.9         reflect
+    37           54           1057.9         contract inside
+    38           56           1057.9         contract inside
+    39           58          959.028         expand
+    40           59          959.028         reflect
+    41           60          959.028         reflect
+    42           61          959.028         reflect
+    43           62          959.028         reflect
+    44           63          959.028         reflect
+    45           64          959.028         reflect
+    46           66          959.028         contract inside
+    47           68          959.028         contract inside
+    48           69          959.028         reflect
+    49           70          959.028         reflect
+    50           71          959.028         reflect
+    51           73          904.387         reflect
+    52           74          904.387         reflect
+    53           75          904.387         reflect
+    54           88          904.387         shrink
+    55           90          904.387         contract inside
+    56           92          884.316         reflect
+    57           93          884.316         reflect
+    58           94          884.316         reflect
+    59           96          883.155         reflect
+    60           97          883.155         reflect
+    61           98          883.155         reflect
+    62           99          883.155         reflect
+    63          101           836.91         reflect
+    64          102           836.91         reflect
+    65          103           836.91         reflect
+    66          105          758.133         expand
+    67          106          758.133         reflect
+    68          108          758.133         contract inside
+    69          109          758.133         reflect
+    70          110          758.133         reflect
+    71          111          758.133         reflect
+    72          112          758.133         reflect
+    73          113          758.133         reflect
+    74          114          758.133         reflect
+    75          115          758.133         reflect
+    76          116          758.133         reflect
+    77          117          758.133         reflect
+    78          119          739.294         reflect
+    79          120          739.294         reflect
+    80          122          739.294         contract inside
+    81          124          739.294         contract inside
+    82          125          739.294         reflect
+    83          126          739.294         reflect
+    84          127          739.294         reflect
+    85          128          739.294         reflect
+    86          129          739.294         reflect
+    87          131          739.294         contract inside
+    88          133          739.294         contract inside
+    89          134          739.294         reflect
+    90          135          739.294         reflect
+    91          136          739.294         reflect
+    92          138          730.754         expand
+    93          140          721.624         contract inside
+    94          142          721.624         contract inside
+    95          144          721.624         contract inside
+    96          145          721.624         reflect
+    97          146          721.624         reflect
+    98          147          721.624         reflect
+    99          149          721.624         contract inside
+   100          150          721.624         reflect
+   101          163          721.624         shrink
+   102          165          721.624         contract inside
+   103          166          721.624         reflect
+   104          168          721.624         contract inside
+   105          169          721.624         reflect
+   106          170          721.624         reflect
+   107          171          721.624         reflect
+   108          184          721.624         shrink
+   109          186          721.624         contract outside
+   110          187          721.624         reflect
+   111          188          721.624         reflect
+   112          190          721.624         contract inside
+   113          191          721.624         reflect
+   114          193          721.624         contract inside
+   115          194          721.624         reflect
+   116          195          721.624         reflect
+   117          208          721.624         shrink
+   118          209          721.624         reflect
+   119          211          721.624         contract outside
+   120          212          721.624         reflect
+   121          213          721.624         reflect
+   122          215          721.624         contract inside
+   123          216          721.624         reflect
+   124          217          721.624         reflect
+   125          218          721.624         reflect
+   126          231          721.624         shrink
+Optimization terminated prematurely by user.
+
+x_star =
+
+   1.0e+05 *
+
+  Columns 1 through 9
+
+    0.0000    0.0004    1.8736    0.0000    0.0012    0.0001    0.0002    0.3420    0.0000
+
+  Columns 10 through 11
+
+    0.0000    0.0002
+
+
+fval =
+
+  721.6236
+
+
+exitflag =
+
+    -1
+
+
+output = 
+
+    iterations: 126
+     funcCount: 231
+     algorithm: 'Nelder-Mead simplex direct search'
+       message: 'Optimization terminated prematurely by user.'
+
+
+funcstar =
+
+  -50.2134
+
+
+Jb_i =
+
+    0.0276
+
+
+Jp_i =
+
+    0.3454
+
+
+Js_i =
+
+   -0.0163
+
+
+xb_opt =
+
+     1     3     4
+
+
+xp_opt =
+
+    6.7522    0.0075    0.1487
+
+
+xs_opt =
+
+     1    11     8
+
+>> sys_objc(x_star)
+58  end
+K>> conviol
+
+conviol =
+
+  Columns 1 through 9
+
+    0.0045    0.0498    0.0059    0.0001         0         0         0    0.0005         0
+
+  Columns 10 through 11
+
+         0    0.0163
+
+K>> J_eq
+
+J_eq =
+
+    0.0671   -0.2233
+
+K>> J_ineq
+
+J_ineq =
+
+    0.0768    0.0119   -0.0119   -0.0020   -0.1987    0.0221   -0.2559   -0.2120    0.1277
+
+K>> sys_obj
+Not enough input arguments.
+
+Error in sys_obj (line 4)
+zb=z(1:3);
+ 
+K>> sys_obj(z)
+53  end
+K>> totalCost
+
+totalCost =
+
+  226.7607
+
+K>> flightTime
+
+flightTime =
+
+  730.4956
+  
+  targets:
+       0.26746
+         39.61
+    1.8736e+05
+      0.049299
+        119.86
+        10.707
+        23.487
+         34201
+       0.12154
+       0.66771
+        17.295
+  
+  
+  

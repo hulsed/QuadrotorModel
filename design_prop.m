@@ -7,9 +7,10 @@ function [prop,foil] = design_prop(xp_loc,yp_shar)
     % Propeller Calculations
     %prop.airfoil = propData(xp_loc(2), 1); % propeller prop.airfoil
     
-    diameter=yp_shar(2); %
+     %
     angle=xp_loc(1);
     chord=xp_loc(2);
+    diameter=xp_loc(3);
     %diameter = propData(xp_loc(1), 2)*0.0254; % diameter (inch->m)
     %angle = propData(xp_loc(2), 3); % blade angle at root
     %chord = propData(xp_loc(3), 5)*0.0254; % chord at root (inch->m)

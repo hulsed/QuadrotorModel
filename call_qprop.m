@@ -87,6 +87,9 @@ end
 if not(exist('qpropoutputV'))
     qpropoutputV=NaN(1,19);
 end
+if length(qpropoutputV)<19
+    qpropoutputV=NaN(1,19);
+end
     
 %END JAVA CODE
     % Whichever way we got the output of QProp, get our individual outputs
@@ -109,4 +112,5 @@ end
     perf.pprop=qpropoutputV(:,17);
     perf.clavg=qpropoutputV(:,18);
     perf.cdavg=qpropoutputV(:,19);
+
 end

@@ -23,12 +23,12 @@ function [J_s,ys]=struct_obj(xs_loc,zs,ys_shar)
 %other subsystems.
     
     %For these variables, the response only needs to be less than the
-    %target--not meet it exacly.
+    %target--not meet it exactly.
     for i=1:2
         if ys(i)<zs(i)
             Js(i)=0;
         else
-            Js(i)=((zs(i)-ys(i))/zs(i))^2;
+            Js(i)=-((zs(i)-ys(i))/zs(i))^2;
         end  
     end
     

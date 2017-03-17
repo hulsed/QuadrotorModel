@@ -1,0 +1,94 @@
+ Iter F-count            f(x) Feasibility  Steplength        step  optimality
+    0      12   -7.373814e+01   1.087e+00                           6.059e+01
+    1      24   -4.897454e+01   5.642e-01   1.000e+00   8.061e+00   2.973e+02
+    2      36   -1.049564e+02   2.396e-01   1.000e+00   8.851e+00   1.493e+02
+    3      48   -1.007044e+02   6.580e-02   1.000e+00   6.361e+00   7.241e+01
+    4      60   -1.043156e+02   7.542e-02   1.000e+00   2.460e+00   1.794e+01
+    5      81   -1.020402e+02   7.415e-02   4.035e-02   9.316e-02   1.442e+01
+    6     109   -1.018453e+02   7.109e-02   3.323e-03   7.371e-03   1.241e+01
+    7     138   -1.016932e+02   7.213e-02   2.326e-03   4.903e-03   1.236e+01
+    8     173   -1.016781e+02   7.451e-02   2.737e-04   5.810e-04   1.362e+01
+    9     215   -1.016769e+02   7.450e-02   2.254e-05   4.967e-05   1.362e+01
+   10     239   -1.008703e+02   7.168e-02   1.384e-02   3.050e-02   9.105e+00
+   11     280   -1.008684e+02   7.167e-02   3.220e-05   6.570e-05   9.104e+00
+   12     312   -1.008684e+02   7.167e-02   1.104e-05   2.253e-05   9.104e+00
+
+Optimization stopped because the relative changes in all elements of x are
+less than options.TolX = 1.000000e-06, and the relative maximum constraint
+violation, 6.592166e-02, is less than options.TolCon = 1.000000e-01.
+
+Optimization Metric                                         Options
+max(abs(delta_x./x)) =   7.39e-07                    TolX =   1e-06 (default)
+relative max(constraint violation) =   6.59e-02    TolCon =   1e-01 (selected)
+
+
+x =
+
+   1.0e+05 *
+
+  Columns 1 through 10
+
+    0.0000    0.0002    1.7584    0.0000    0.0012    0.0001    0.0003    0.3206    0.0000    0.0000
+
+  Column 11
+
+    0.0003
+
+
+fval =
+
+ -100.8684
+
+
+exitflag =
+
+     2
+
+
+output = 
+
+         iterations: 12
+          funcCount: 312
+          algorithm: 'sqp'
+            message: 'Local minimum possible. Constraints satisfied.…'
+    constrviolation: 0.0717
+           stepsize: 2.2530e-05
+       lssteplength: 1.1044e-05
+      firstorderopt: 9.1043
+	  
+	  
+K>> sys_obj(x)
+
+ans =
+
+ -100.8684
+
+K>> sys_obj(x)
+53  end
+K>> totalCost
+
+totalCost =
+
+  223.7312
+
+K>> flightTime
+
+flightTime =
+
+  772.0619
+  
+  x_star
+ =
+        0.3434
+         23.91
+    1.7584e+05
+      0.045902
+        119.62
+        10.766
+        24.803
+         32055
+      0.062743
+        0.7204
+             5 
+  
+  

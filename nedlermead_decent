@@ -1,0 +1,281 @@
+ Iteration   Func-count     min f(x)         Procedure
+     0            1          10462.5         
+     1           12          8097.04         initial simplex
+     2           13          8097.04         reflect
+     3           14          8097.04         reflect
+     4           15          8097.04         reflect
+     5           16          8097.04         reflect
+     6           18          6891.94         expand
+     7           19          6891.94         reflect
+     8           20          6891.94         reflect
+     9           21          6891.94         reflect
+    10           22          6891.94         reflect
+    11           23          6891.94         reflect
+    12           25          4669.63         expand
+    13           26          4669.63         reflect
+    14           28          4251.56         reflect
+    15           29          4251.56         reflect
+    16           30          4251.56         reflect
+    17           31          4251.56         reflect
+    18           32          4251.56         reflect
+    19           33          4251.56         reflect
+    20           34          4251.56         reflect
+    21           35          4251.56         reflect
+    22           36          4251.56         reflect
+    23           37          4251.56         reflect
+    24           38          4251.56         reflect
+    25           39          4251.56         reflect
+    26           40          4251.56         reflect
+    27           42          4251.56         contract inside
+    28           44          3854.09         expand
+    29           45          3854.09         reflect
+    30           46          3854.09         reflect
+    31           47          3854.09         reflect
+    32           48          3854.09         reflect
+    33           49          3854.09         reflect
+    34           50          3854.09         reflect
+    35           52           3600.1         reflect
+    36           53           3600.1         reflect
+    37           55           3600.1         contract inside
+    38           56           3600.1         reflect
+    39           57           3600.1         reflect
+    40           58           3600.1         reflect
+    41           60           3600.1         contract outside
+    42           62          3225.59         expand
+    43           64          3225.59         contract inside
+    44           65          3225.59         reflect
+    45           66          3225.59         reflect
+    46           67          3225.59         reflect
+    47           68          3225.59         reflect
+    48           69          3225.59         reflect
+    49           70          3225.59         reflect
+    50           71          3225.59         reflect
+    51           73          3206.82         reflect
+    52           75          3206.82         contract inside
+    53           77           2769.8         expand
+    54           79           2769.8         contract inside
+    55           80           2769.8         reflect
+    56           82          2461.69         expand
+    57           83          2461.69         reflect
+    58           84          2461.69         reflect
+    59           85          2461.69         reflect
+    60           86          2461.69         reflect
+    61           87          2461.69         reflect
+    62           89          1608.61         expand
+    63           90          1608.61         reflect
+    64           91          1608.61         reflect
+    65           93          1608.61         contract inside
+    66           94          1608.61         reflect
+    67           95          1608.61         reflect
+    68           96          1608.61         reflect
+    69           97          1608.61         reflect
+    70           98          1608.61         reflect
+    71           99          1608.61         reflect
+    72          101          1608.61         contract outside
+    73          102          1608.61         reflect
+    74          103          1608.61         reflect
+    75          105          1608.61         contract inside
+    76          106          1608.61         reflect
+    77          108          1468.26         reflect
+    78          109          1468.26         reflect
+    79          111          1423.55         reflect
+    80          112          1423.55         reflect
+    81          114          1423.55         contract inside
+    82          116          1423.55         contract outside
+    83          118          1423.55         contract inside
+    84          119          1423.55         reflect
+    85          121          1423.55         contract inside
+    86          123          1423.55         contract inside
+    87          125          1423.55         contract inside
+    88          126          1423.55         reflect
+    89          128          1423.55         contract inside
+    90          129          1423.55         reflect
+    91          130          1423.55         reflect
+    92          131          1423.55         reflect
+    93          133          1423.55         contract inside
+    94          135          1423.55         contract inside
+    95          136          1423.55         reflect
+    96          138          1394.44         contract inside
+    97          140          1338.91         reflect
+    98          142          1327.93         reflect
+    99          143          1327.93         reflect
+   100          144          1327.93         reflect
+   101          146          1327.93         contract inside
+   102          147          1327.93         reflect
+   103          149          1326.14         contract inside
+   104          150          1326.14         reflect
+   105          152          1306.52         contract inside
+   106          154           1246.4         reflect
+   107          155           1246.4         reflect
+   108          157           1246.4         contract inside
+   109          158           1246.4         reflect
+   110          159           1246.4         reflect
+   111          160           1246.4         reflect
+   112          162          1024.26         expand
+   113          163          1024.26         reflect
+   114          164          1024.26         reflect
+   115          166          1024.26         contract outside
+   116          167          1024.26         reflect
+   117          168          1024.26         reflect
+   118          169          1024.26         reflect
+   119          170          1024.26         reflect
+   120          171          1024.26         reflect
+   121          173          1024.26         contract inside
+   122          174          1024.26         reflect
+   123          175          1024.26         reflect
+   124          177          1024.26         contract inside
+   125          179          906.469         expand
+   126          180          906.469         reflect
+   127          181          906.469         reflect
+   128          183          793.953         expand
+   129          184          793.953         reflect
+   130          185          793.953         reflect
+   131          186          793.953         reflect
+   132          188          749.798         reflect
+   133          189          749.798         reflect
+   134          191          749.798         contract inside
+   135          204          742.768         shrink
+   136          206          724.933         reflect
+   137          207          724.933         reflect
+   138          209          220.105         reflect
+   139          210          220.105         reflect
+   140          211          220.105         reflect
+   141          213          219.091         reflect
+   142          226          214.079         shrink
+   143          227          214.079         reflect
+   144          228          214.079         reflect
+   145          230          214.079         contract inside
+   146          231          214.079         reflect
+   147          232          214.079         reflect
+   148          233          214.079         reflect
+   149          234          214.079         reflect
+   150          236          214.079         contract inside
+   151          237          214.079         reflect
+   152          250          214.079         shrink
+   153          251          214.079         reflect
+   154          252          214.079         reflect
+   155          253          214.079         reflect
+   156          255          214.079         contract inside
+   157          256          214.079         reflect
+   158          257          214.079         reflect
+   159          258          214.079         reflect
+   160          260          214.079         contract inside
+   161          262          214.079         contract inside
+   162          275          214.079         shrink
+   163          276          214.079         reflect
+   164          278          214.079         contract inside
+   165          279          214.079         reflect
+   166          280          214.079         reflect
+   167          281          214.079         reflect
+   168          282          214.079         reflect
+   169          295          214.079         shrink
+   170          297          214.079         contract inside
+   171          299          213.954         reflect
+   172          301          213.954         contract inside
+   173          303          213.344         expand
+   174          305          213.344         contract inside
+   175          306          213.344         reflect
+   176          308          213.344         contract inside
+   177          309          213.344         reflect
+   178          322          213.344         shrink
+   179          323          213.344         reflect
+   180          324          213.344         reflect
+   181          337          213.344         shrink
+   182          338          213.344         reflect
+   183          339          213.344         reflect
+   184          340          213.344         reflect
+   185          341          213.344         reflect
+   186          343          213.344         contract inside
+   187          344          213.344         reflect
+   188          345          213.344         reflect
+   189          347          213.344         contract inside
+   190          349          213.344         contract inside
+   191          362          213.344         shrink
+   192          364          213.344         contract inside
+Optimization terminated prematurely by user.
+
+x_star =
+
+   1.0e+05 *
+
+  Columns 1 through 9
+
+    0.0000    0.0002    1.3969    0.0000    0.0011    0.0001    0.0002    0.3079    0.0000
+
+  Columns 10 through 11
+
+    0.0000    0.0002
+
+
+fval =
+
+  213.3440
+
+
+exitflag =
+
+    -1
+
+
+output = 
+
+    iterations: 192
+     funcCount: 364
+     algorithm: 'Nelder-Mead simplex direct search'
+       message: 'Optimization terminated prematurely by user.'
+
+
+Jb_i =
+
+    0.0323
+
+
+Jp_i =
+
+    1.3567
+
+
+Js_i =
+
+   -0.0087
+
+
+xb_opt =
+
+     2     4     1
+
+
+xp_opt =
+
+    6.4560    0.0068    0.1625
+
+
+xs_opt =
+
+     1    11     8
+
+>> funcstar=sys_obj(x_star)
+
+funcstar =
+
+  213.3440
+
+>> funcstar=sys_obj(x_star)
+53  end
+K>> flightTime
+
+flightTime =
+
+  387.4144
+
+K>> 387/60
+
+ans =
+
+    6.4500
+
+K>> totalCost
+
+totalCost =
+
+  200.2528

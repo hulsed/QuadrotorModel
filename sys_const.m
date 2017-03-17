@@ -63,45 +63,36 @@ ys_opt=temp33;
 %measure of consistency of each target (used in CO2)
 
 %battery
+    %mass and cost must be less than or equal to target
     for i=1:2
-        if yb_opt(i)<zb(i)
-            Jb(i)=0;
-        else
-            Jb(i)=((zb(i)-yb_opt(i))./zb(i));
-        end
+            Jb(i)=-((zb(i)-yb_opt(i))./abs(zb(i)));
     end
-    
-    Jb(3)=((zb(i)-yb_opt(i))./zb(i));
+    %energy must be must be greater than or equal to target
+    Jb(3)=(zb(i)-yb_opt(i))./abs(zb(i));
 
 %propulsion
-    Jp(1)=(zp(1)-yp_opt(1))./zp(1);
-    
-    if yp_opt(2)<zp(2)
-        Jp(2)=0;
-    else
-        Jp(2)=(zp(2)-yp_opt(2))./zp(2);
-    end
-    
-    Jp(3)=(zp(3)-yp_opt(3))./zp(3);
-    
-    Jp(4)=(zp(4)-yp_opt(4))./zp(4);
-    
-    Jp(5)=(zp(5)-yp_opt(5))./zp(5);
+    %mass must be equal to target (for struct constraint)
+    Jp(1)=abs((zp(1)-yp_opt(1))./abs(zp(1)));
+    %cost must be less than or equal to target
+    Jp(2)=-(zp(2)-yp_opt(2))./abs(zp(2));
+    %voltage must be less than or equal to target
+    Jp(3)=-(zp(3)-yp_opt(3))./abs(zp(3));
+    %current must be less than or equal to target
+    Jp(4)=-(zp(4)-yp_opt(4))./abs(zp(4));
+    %rpm must be less than or equal to target
+    Jp(5)=-(zp(5)-yp_opt(5))./abs(zp(5));
+    %diameter must be equal to target
+    Jp(6)=(zp(6)-yp_opt(6))./abs(zp(6));
 
 %structures
-    if ys_opt(1)<zs(1)
-        Js(1)=0;
-    else
-        Js(1)=(zs(1)-ys_opt(1))/zs(1);
-    end
-    if ys_opt(2)<zs(2)
-        Js(2)=0;
-    else
-        Js(2)=(zs(2)-ys_opt(2))/zs(2);
-    end
+    %For these variables, the response only needs to be less than the
+    %target--not meet it exactly.
+        Js(1)=-(zs(1)-ys_opt(1))/abs(zs(1));
 
-J_ineq=[Jb(1),Jb(2),Jp(2), Js(1), Js(2)];
-J_eq=[Jb(3), Jp(1), Jp(3), Jp(4), Jp(5)];
+        Js(2)=-(zs(2)-ys_opt(2))/abs(zs(2));
+
+J_ineq=[Jb(1),Jb(2),Jb(3),Jp(2),Jp(3), Jp(4),Jp(5), Js(1), Js(2)];
+J_eq=[Jp(1), Jp(6)];
 
 
  ineq=[];

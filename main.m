@@ -4,9 +4,9 @@
     %zb_1 - battery mass
     %zb_2 - battery cost
     %zp_3 - battery energy stored
-    zb0=[0.33,  27.06,   1.7582e5];
+    zb0=[0.3434,  70,   1.000e5];
     LBb=[0.0001,     0.0001,      0.0001];
-    UBb=[5,     200,     1e7];
+    UBb=[20,     2000,     1e8];
     scaleb=[0.01, 1, 500];
     
     %zp_1 - propulsion mass
@@ -15,42 +15,40 @@
     %zp_4 - propulsion current applied
     %zp_5 - propulsion rpm acheived
     %zp_6 - propulsion diam
-    zp0=[0.06,  120,    2.909,  22.28,   7948,  0.203];
-    LBp=[0.0001,     0.0001,      0.0001,      0.0001,      0.0001,      0.0001];
-    UBp=[1,     600,    36,     300,    36000,  1];
+    zp0=[0.0460,          300,    20,      25,   3.600e+04,  0.05];
+    LBp=[0.0001,     0.0001,   0.0001,     0.0001,  100,      0.025];
+    UBp=[20,             1000,       50,       300,    36000,  1];
     scalep=[0.001, 10,  0.1,    0.1,    100,    0.01]; 
     
     
     %zs_1 - structures mass
     %zs_2 - structures cost
-    zs0=[0.0709,2.6292];
-    LBs=[0.0001,     0.0001];
-    UBs=[1,     5];
+    zs0=[0.7204,10];
+    LBs=[0.0001,     0.0003];
+    UBs=[10,     500];
     scales=[0.001, 0.01];
 
-LB=[LBb, LBp, LBs];
 UB=[UBb, UBp, UBs];
+LB=[LBb, LBp, LBs];
 
 derivx=[scaleb, scalep, scales];
 
 startpt=[zb0,zp0,zs0];
 
-method=4;
+method=3;
 
 func=@sys_obj;
 const=@sys_const;
 
 if method==1
-options = optimoptions('fmincon','Display','iter-detailed', 'TolConSQP', 0.15, ...
-    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}); %, 'FinDiffRelStep', derivx);
-[x,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
+options = optimoptions('fmincon','Display','iter-detailed', ...
+    'Algorithm', 'sqp', 'PlotFcn', {@optimplotfval}, 'TolCon', 0.1); %, 'FinDiffRelStep', derivx);
+[x_star,fval,exitflag,output]=fmincon(func,startpt, [], [], [], [], LB, UB, const, options)
 elseif method==2
 
 
 
-options = psoptimset('Display','iter', 'Cache', 'on', 'PlotFcn', {@psplotbestf},...
-    'PenaltyFactor', 1000, 'TolBind', 0.3,'PollMethod', 'MADSPositiveBasisNp1',...
-    'InitialMeshSize', 1000 );
+options = psoptimset('Display','iter', 'PlotFcn', {@psplotbestf});
 [x_star,fval,exitflag,output]=patternsearch(func,startpt, [], [], [], [], LB, UB, const, options)
 
 elseif method==3
@@ -61,7 +59,7 @@ f_adapted=@sys_objc;
 elseif method==4
 options = gaoptimset('Display', 'iter','PopulationSize', 10,'PlotFcn', {@gaplotbestf}); %, 'FinDiffRelStep', derivx);
 
-[x,fval,exitflag,output]=ga(func,numel(UB), [], [], [], [], LB, UB, const, options)
+[x_star,fval,exitflag,output]=ga(func,numel(UB), [], [], [], [], LB, UB, const, options)
 
 end
 
@@ -74,9 +72,9 @@ end
 
 
 %find the local variables of that optimum pt.
-xb_star=x_star(1:4);
-xp_star=x_star(5:12);
-xs_star=x_star(13:14);
+xb_star=x_star(1:3);
+xp_star=x_star(4:9);
+xs_star=x_star(10:11);
 
 
 
@@ -96,6 +94,7 @@ for i=1:3
     end
 end
 
+funcstar=sys_obj(x_star)
 Jb_i=temp(1)
 Jp_i=temp(2)
 Js_i=temp(3)

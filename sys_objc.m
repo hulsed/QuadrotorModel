@@ -1,36 +1,58 @@
 function Fc=sys_objc(z)
-F=sys_obj(z);
-[temp,constraints]=sys_const(z);
-for i=1:length(constraints)
-    if constraints(i)>0.1
-        conviol(i)=constraints(i);
-    else
-        conviol(i)=0;
+
+    %zb_1 - battery mass
+    %zb_2 - battery cost
+    %zp_3 - battery energy stored
+    zb0=[0.3434,  23.9078,   1.7584e5];
+    LBb=[0.0001,     0.0001,      0.0001];
+    UBb=[20,     2000,     1e8];
+    scaleb=[0.01, 1, 500];
+    
+    %zp_1 - propulsion mass
+    %zp_2 - propulsion cost
+    %zp_3 - propulsion voltage applied
+    %zp_4 - propulsion current applied
+    %zp_5 - propulsion rpm acheived
+    %zp_6 - propulsion diam
+    zp0=[0.0460,          119.6177,    10.8358,      23.7838,   3.2055e+04,  0.0628];
+    LBp=[0.0001,     0.0001,   0.0001,     0.0001,  100,      0.025];
+    UBp=[20,             1000,       50,       300,    36000,  1];
+    scalep=[0.001, 10,  0.1,    0.1,    100,    0.01]; 
+    
+    
+    %zs_1 - structures mass
+    %zs_2 - structures cost
+    zs0=[0.7204,5];
+    LBs=[0.0001,     0.0003];
+    UBs=[10,     500];
+    scales=[0.001, 0.01];
+
+UB=[UBb, UBp, UBs];
+LB=[LBb, LBp, LBs];
+
+%checks to see if in bounds
+inbounds=true;
+for i=1:length(UB)
+    if z(i)>UB(i)
+        inbounds=false;
+    elseif z(i)<LB(i)
+        inbounds=false;
     end
 end
-infeas=sum(conviol);
+if inbounds
 
+    F=sys_obj(z);
 
-    if infeas<0.1
-        penalty=0;
-        Fc=F+penalty;
-    elseif 0.1<=infeas<0.2
-        penalty=100;
-        Fc=F+penalty;
-    elseif 0.2<=infeas<0.5
-        penalty=1000;
-        Fc=F+penalty;
-    elseif 0.5<=infeas<2.0
-        penalty=10000;
-        Fc=F+penalty;
-    elseif 2.0<=infeas<10
-        penalty=100000;
-        Fc=F+penalty;
-    elseif 10<=infeas<20
-        penalty=10e8;
-        Fc=F+penalty;
-    elseif 20<=infeas
-        Fc=10e10;
-    end
+    [J_ineq, J_eq]=sys_const(z);
+    conviol=[J_eq.^2,J_ineq.^2.*(J_ineq>0)];
+    infeas=sum(conviol);
+
+     
+    penalty=10000;
+    Fc=F+penalty*infeas;
+
+else
+    Fc=10e10;
+end
 
 end
