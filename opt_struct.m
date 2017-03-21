@@ -55,21 +55,5 @@ for i=LB(1):UB(1)
    
     
 end
-% options=gaoptimset('PlotFcn',@gaplotbestf, 'TolCon', 0.1,'Display','off','FitnessLimit', 0.01);
-% [xs_min,Js_i,flags,outpt]=ga(@objstruct,numvars,[],[],[],[],LB,UB,@construct,intcon,options);
-% [temp,ys_min]=struct_obj(xs_min,zs);
-% 
-%     function J_s=objstruct(xs_loc)
-%         J_s=struct_obj(xs_loc,zs);
-%     end
-% 
-%     function [cs, ceq]=construct(xs_loc)
-%         cs=struct_const(xs_loc, ys_shar);
-%         ceq=[];
-%     end
-if not(exist('J_s'))
-disp('why???')
-end
-
 
 end

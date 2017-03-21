@@ -5,19 +5,6 @@ zb=z(1:3);
 zp=z(4:9);
 zs=z(10:11);
 
-
-% for j=1:25
-%     poolobj=gcp;
-%     filetoadd=['motorfiles/motorfile' num2str(j-1)];
-%     addAttachedFiles(poolobj, {filetoadd});
-%     %clear filetoadd
-% end
-% addAttachedFiles(poolobj, {'motorfile','propfile','qprop.exe'});
-% addAttachedFiles(poolobj, {'airfoiltable.csv','batterytable.csv','materialtable.csv','motortable.csv','propranges.csv','rodtable.csv'});
-
-%initialize variables to parfor loop (so they stay in the workspace).
-
-
 %this is where subsystem responses are calculated
 for i=1:3
     if i==1
@@ -96,10 +83,5 @@ J_eq=[Jp(1), Jp(6)];
 
 
  ineq=[];
-% disp(['J_i= ', num2str(J_i)])
-% disp(['z=   ', num2str(z)])
-% disp(['xb_loc=', num2str(xb_opt)] )
-% disp(['xp_loc=', num2str(xp_opt)] )
-% disp(['xs_loc=', num2str(xs_opt)] )
 
 end

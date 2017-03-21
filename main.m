@@ -1,6 +1,4 @@
 
-%NOTE: find a good starting point.
-
     %zb_1 - battery mass
     %zb_2 - battery cost
     %zp_3 - battery energy stored
