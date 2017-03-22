@@ -2,9 +2,9 @@ function rod = design_rod(x, prop, res)
     
     %reading appropriate data   
     matData=csvread('materialtable.csv',1,1);
-    %diameters converted to meters
+    %diameters converted from inches to meters
     diameters=[0.2500, 0.3750, 0.5000, 0.6250, 0.7500, 0.8750, 1.0000, 1.1250, 1.2500, 1.3750, 1.5000]*2.54/100;
-    %
+    %widths converted from inches to meters
     widths=[0.0350, 0.0580, 0.0650, 0.0830, 0.0950, 0.1250, 0.1875,  0.2500]*2.54/100;
     
     mat.Type=double(x(11));
