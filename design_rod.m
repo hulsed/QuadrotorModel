@@ -1,8 +1,11 @@
 function rod = design_rod(x, prop, res)
     
     %reading appropriate data   
-    rodData= csvread('rodtable.csv',1,0);
     matData=csvread('materialtable.csv',1,1);
+    %diameters converted to meters
+    diameters=[0.2500, 0.3750, 0.5000, 0.6250, 0.7500, 0.8750, 1.0000, 1.1250, 1.2500, 1.3750, 1.5000]*2.54/100;
+    %
+    widths=[0.0350, 0.0580, 0.0650, 0.0830, 0.0950, 0.1250, 0.1875,  0.2500]*2.54/100;
     
     mat.Type=double(x(11));
     mat.Ymod=matData(x(11),1); %young's modulus in GPa
@@ -18,8 +21,8 @@ function rod = design_rod(x, prop, res)
     minRodLength=max(0.01, motorDist-res.framewidth/2);       
     length = minRodLength; %rodData(x(12),1)*2.54/100; %length converted to m
     
-    diameter = rodData(x(12),2)*2.54/100; %diamenter converted to m
-    thickness = rodData(x(13),3)*2.54/100; %thickness converted to m
+    diameter = diameters(x(12));
+    thickness = widths(x(13));
     
     % Create the rod given everything we need
     rod.mat = mat;
