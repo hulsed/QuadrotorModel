@@ -1,16 +1,30 @@
 function [prop,foil] = design_prop(x)
     
     %read appropriate data
-    propData = csvread('propranges.csv', 1, 0); %load starting from 2nd row
     foilData = csvread('airfoiltable.csv', 1, 1); %load starting from 2nd row, 2nd col
     
     % Propeller Calculations
-    %prop.airfoil = propData(x(5), 1); % propeller prop.airfoil
-    diameter = propData(x(6), 2)*0.0254; % diameter (inch->m)
-    angleRoot = propData(x(7), 3); % blade angle at root
-    angleTip = propData(x(8), 4); % blade angle at tip
-    chordRoot = propData(x(9), 5)*0.0254; % chord at root (inch->m)
-    chordTip = propData(x(10), 6)*0.0254; % chord at tip (inch->m)
+    prop.root=0.005; %defines where the root of the propeller begins along the radius
+    
+    % create available options 
+    diameters=linspace(prop.root*2+0.01,0.2,12); %range is from 1 cm past the root to 0.2 meters
+    angles=linspace(0,45,10); %min angle, max angle, num pts
+    twists=linspace(0,1,10); %min twist, max twist, num pts
+    chords=linspace(0.005,0.02,10); %min chord, max chord, num pts (in m)
+    tapers=linspace(0,1,10); %min taper, max taper, num pts
+    
+    % pick option
+    prop.diameter=diameters(x(6));
+    prop.angleAve=angles(x(7));
+    prop.angleTwist=twists(x(8));
+    prop.chordAve=chords(x(9));
+    prop.chordTaper=tapers(x(10));
+    
+    %transform to geometry
+    prop.angleTip=2*prop.angleAve/(1/prop.angleTwist+1);
+    prop.angleRoot=2*prop.angleAve/(prop.angleTwist+1);
+    prop.chordTip=2*prop.chordAve/(1/prop.chordTaper+1);
+    prop.chordRoot=2*prop.chordAve/(prop.chordTaper+1);
     
     %Foil Calculations
     foil.Cl0=foilData(x(5),1);
@@ -24,26 +38,15 @@ function [prop,foil] = design_prop(x)
     foil.Reexp=foilData(x(5),9);
     foil.Num=foilData(x(5),10);
     
-    
-    %Assign prop characteristics to struct
-    prop.diameter = diameter; % meters
-    prop.angleRoot = angleRoot; % blade angle at root
-    prop.angleTip = angleTip; % blade angle at tip
-    prop.chordRoot = chordRoot; % chord at root (inch->m)
-    prop.chordTip = chordTip; % chord at tip (inch->m)
-    
-    chordAvg=mean([chordRoot, chordTip]);
     foilnum=['NACA00' num2str(foil.Num)];
-    avgThickness=0.01*foil.Num*chordAvg;
-    xsArea=0.5*avgThickness*chordAvg; %assuming may be approximated as a triangle
-    vol=xsArea*diameter;
+    prop.avgThickness=0.01*foil.Num*prop.chordAve;
+    prop.xsArea=0.5*prop.avgThickness*prop.chordAve; %assuming may be approximated as a triangle
+    vol=prop.xsArea*prop.diameter;
     %Note: assuming propeller is polycarb (1190 kg/m^3)
-    mass=vol*1190;
+    prop.mass=vol*1190;
     %Note: assuming propeller is polycarb (0.29 $/in^3)
     costdens=0.29*(100/2.54)^3;
-    cost=costdens*vol;
+    prop.cost=costdens*vol;
     
-    prop.mass=mass;
-    prop.cost=cost;
     write_propfile(prop,foil);
 end

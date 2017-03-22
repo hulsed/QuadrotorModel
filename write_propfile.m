@@ -3,7 +3,8 @@ function write_propfile(prop, foil)
     %generating propeller geometry
     sects=20;
     radius=prop.diameter/2;
-    root=0.02;
+    root=prop.root;
+
     radiusvect=linspace(root,radius,sects);
     anglevect=prop.angleRoot+radiusvect*(prop.angleTip-prop.angleRoot)/radius;
     chordvect=prop.chordRoot+radiusvect*(prop.chordTip-prop.chordRoot)/radius;
