@@ -7,61 +7,58 @@ function [constraints]=calc_constraints(battery, motor, prop, foil, rod,sys, hov
 
 % After typing in constraint, make sure to assign it to a component in
 % compute_rewards so it can be learned.
-%System
-if failure
-constraints(1)=10*failure;
-constraints(2:8)=0;
-else
- constraints(1)=0;
- %must acheive required thrust
-    
-    thrustReq = sys.mass*9.81/4;
- constraints(2)=10*(1-hover.thrust/thrustReq); %Note: multiplying by 10 is arbitrary to make the magnitude larger
- tol=0.005;
- if constraints(2)<=tol
-     constraints(2)=0;
- end
- 
- 
+
+%System Constraints
+    %calcs must not fail
+     c_sys(1)=failure;
+     %system must acheive required thrust
+     thrustReq = sys.mass*9.81/4;
+     c_sys(2)=10*(1-hover.thrust/thrustReq); %Note: multiplying by 10 is arbitrary to make the magnitude larger
+     tol=0.005;
+     if c_sys(2)<=tol
+         c_sys(2)=0;
+     end
 %Battery 
- %max current
- constraints(3)=(4*hover.amps)/battery.Imax-1; %Note: perf is from EACH motor.
- %max voltage 
- constraints(4)=hover.volts/battery.Volt-1;
- %max power 
+     %max current
+     c_bat(1)=(4*hover.amps)/battery.Imax-1; %Note: perf is from EACH motor.
+     %max voltage 
+     c_bat(2)=hover.volts/battery.Volt-1;
+
 %Motor Constraint
- %max current
- constraints(5)=hover.amps/motor.Imax-1;
- %max power
- constraints(6)=hover.pelec/motor.Pmax-1;
- %max voltage???
-%Propeller Constraint
- %Stress under bending
- %Deflection
-%Rod Constraint
+     %max current
+     c_mot(1)=hover.amps/motor.Imax-1;
+     %max power
+     c_mot(2)=hover.pelec/motor.Pmax-1;
+     %max voltage???
+%Propeller Constraint (empty for now)
+    c_prop(1)=0;
+    %Stress under bending
+    %Deflection
+    
+%Rod Constraints
 
+     %Stress
 
- %Stress
+     %stiffness/natural freq (cantilever beam) (strouhal no=0.2)
+     forcedFreq=hover.rpm/60; %converting to hz
+
+     minnatFreq=2*forcedFreq; %natural frequency must be two times the forced frequency.
+     % There should be more technical justification for this.
+     c_rod(1)=1-sys.natFreq/minnatFreq;
+
+     %deflection (1% of length, max)
+     maxDefl=0.01*rod.Length;
+     defl=hover.thrust/rod.Stiffness;
+     c_rod(2)=defl/maxDefl-1;
+     %impact
  
- %stiffness/natural freq (cantilever beam) (strouhal no=0.2)
- forcedFreq=hover.rpm/60; %converting to hz
  
- minnatFreq=2*forcedFreq; %natural frequency must be two times the forced frequency.
- % There should be more technical justification for this.
- constraints(7)=1-sys.natFreq/minnatFreq;
+ constraints=[c_sys,c_bat,c_mot,c_prop,c_rod];
  
- %deflection (1% of length, max)
- maxDefl=0.01*rod.Length;
- defl=hover.thrust/rod.Stiffness;
- constraints(8)=defl/maxDefl-1;
- %impact
- 
- %must be long enought that propellers don't interfere
- %sepDist=0.25*prop.diameter+prop.diameter;
- %motorDist=sepDist/sqrt(2);
- %framewidth=0.1; %temp width of frame!
- %minRodLength=motorDist-framewidth/2;
- %constraints(8)=1-rod.Length/minRodLength;
+ %if any aren't a number, that violates all the constraints
+ if any(isnan(constraints))
+     constraints=ones(1,length(constraints))*10;
+ end
  
 end
  
