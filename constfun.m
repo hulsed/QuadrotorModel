@@ -1,11 +1,7 @@
 function [con,ceq]=constfun(x)
                
         % "non-designed" parts of the design.
-    res.mass=0.3;
-    res.framewidth=0.075; %temp width of frame!
-    res.planArea=res.framewidth^2;
-    res.cost=50;
-    res.power=5;
+    res=res_assumptions();
     %design of subsystems
     battery = design_battery(x);
     motor = design_motor(x);

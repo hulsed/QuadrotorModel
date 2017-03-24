@@ -3,7 +3,7 @@ function battery = design_battery(x)
     batteryData = csvread('batterytable.csv', 1, 1);
     
     cellnum=double(x(1));
-    sConfigs=double(x(2));
+    sConfigs=double(x(2)+1);
     pConfigs=double(x(3));
     
     %find properties of cell

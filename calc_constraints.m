@@ -1,4 +1,4 @@
-function [constraints]=calc_constraints(battery, motor, prop, foil, rod,sys, hover,failure)
+function [constraints]=calc_constraints(battery, motor, prop, foil, rod,esc,sys, hover,failure)
 % Constraints in a normalized form g=val/valmax-1 or g=1-val/valmin
 % This means when g<0, constraint is satisfied and when g>0, constraint 
 % is violated. When constraints are violated, they are multiplied by the
@@ -52,8 +52,15 @@ function [constraints]=calc_constraints(battery, motor, prop, foil, rod,sys, hov
      c_rod(2)=defl/maxDefl-1;
      %impact
  
- 
- constraints=[c_sys,c_bat,c_mot,c_prop,c_rod];
+ %ESC Constraints
+    %more than min configs
+    c_esc(1)=1-battery.sConfigs/esc.minbats;
+    %less than max configs
+    c_esc(2)=battery.sConfigs/esc.maxbats-1;
+    %less than max current
+    c_esc(3)=hover.amps/esc.maxcurrent-1;
+     
+ constraints=[c_sys,c_bat,c_mot,c_prop,c_rod,c_esc];
  
  %if any aren't a number, that violates all the constraints
  if any(isnan(constraints))
