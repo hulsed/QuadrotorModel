@@ -28,7 +28,10 @@ structuralmass=housingmass+framemass+partsmass;
     gimbalmass=0.16;
     cameramass=0.15;
 
-payloadmass=gimbalmass+cameramass;
+%note: with payload, the problem becomes more boring. leaving it out for
+%now.
+%payloadmass=gimbalmass+cameramass;
+payloadmass=0;
 
 %costs
     electronicscost=200;
