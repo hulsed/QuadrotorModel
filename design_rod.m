@@ -7,12 +7,12 @@ function rod = design_rod(x, prop, res)
     %widths converted from inches to meters
     widths=[0.0350, 0.0580, 0.0650, 0.0830, 0.0950, 0.1250, 0.1875,  0.2500]*2.54/100;
     
-    mat.Type=double(x(11));
-    mat.Ymod=matData(x(11),1); %young's modulus in GPa
-    mat.Sut=matData(x(11),2); %ultimate strength in MPa
-    mat.Sy=matData(x(11),3); %yield strength in MPa
-    mat.Dens=matData(x(11),4); %density in kg/m^3
-    mat.Cost=matData(x(11),5)*(100/2.54)^3; %cost in $/m^3
+    mat.Type=double(x(6));
+    mat.Ymod=matData(x(6),1); %young's modulus in GPa
+    mat.Sut=matData(x(6),2); %ultimate strength in MPa
+    mat.Sy=matData(x(6),3); %yield strength in MPa
+    mat.Dens=matData(x(6),4); %density in kg/m^3
+    mat.Cost=matData(x(6),5)*(100/2.54)^3; %cost in $/m^3
     
     
     sepDist=0.25*prop.diameter+prop.diameter;
@@ -21,8 +21,8 @@ function rod = design_rod(x, prop, res)
     minRodLength=max(0.01, motorDist-res.framewidth/2);       
     length = minRodLength; %rodData(x(12),1)*2.54/100; %length converted to m
     
-    diameter = diameters(x(12));
-    thickness = widths(x(13));
+    diameter = diameters(x(7));
+    thickness = widths(x(8));
     
     % Create the rod given everything we need
     rod.mat = mat;

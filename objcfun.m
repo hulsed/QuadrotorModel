@@ -1,13 +1,13 @@
-function obj=objcfun(x)           
+function obj=objcfun(x_int,x_cont)           
     
     % "non-designed" parts of the design.
     res=res_assumptions();
     %design of subsystems
-    battery = design_battery(x);
-    motor = design_motor(x);
-    [prop,foil] = design_prop(x);
-    rod = design_rod(x, prop,res);
-    esc = design_esc(x);
+    battery = design_battery(x_int);
+    motor = design_motor(x_int);
+    [prop,foil] = design_prop(x_int,x_cont);
+    rod = design_rod(x_int, prop,res);
+    esc = design_esc(x_int);
     %design of system
     sys=design_sys(battery, motor, prop, foil, rod,esc, res);
     %calculate objective
