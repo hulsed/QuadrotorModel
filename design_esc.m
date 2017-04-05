@@ -2,7 +2,7 @@ function esc=design_esc(x)
 
 escData=csvread('esctable.csv',1,2);
 
-chosenEscParams=escData(x(9),:);
+chosenEscParams=escData(x(7),:);
 
 esc.cost=chosenEscParams(1);
 esc.mass=chosenEscParams(2)/1000; %converting grams to kg

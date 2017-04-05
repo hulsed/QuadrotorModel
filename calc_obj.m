@@ -1,4 +1,4 @@
-function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc, sys)
+function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landingskid, sys)
     
     failure=0;
     %write prop file for qprop
@@ -10,7 +10,7 @@ function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc, sys)
 
     
     % Calculation of Constraints (only possible with performance data) 
-        [constraints]=calc_constraints(battery,motor,prop,foil,rod,esc,sys,hover,failure);
+        [constraints]=calc_constraints(battery,motor,prop,foil,rod,esc,landingskid,sys,hover,failure);
         
         
     % Calculates objectives

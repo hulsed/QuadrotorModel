@@ -27,6 +27,7 @@ structuralmass=housingmass+framemass+partsmass;
 %payload
     gimbalmass=0.16;
     cameramass=0.15;
+	payloadheight=0.03;
 
 %note: with payload, the problem becomes more boring. leaving it out for
 %now.
@@ -56,5 +57,6 @@ payloadmass=0;
     res.cost=electronicscost+structuralcost+payloadcost;
     
     res.power=electronicspower+payloadpower;
+	res.payloadheight=0.03;
 
 end
