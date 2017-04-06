@@ -31,8 +31,13 @@ function [constraints]=calc_constraints(battery, motor, prop, foil, rod,esc,land
      c_mot(2)=hover.pelec/motor.Pmax-1;
      %max voltage???
 %Propeller Constraint (empty for now)
-    c_prop(1)=0;
+    
     %Stress under bending
+    propmoment=hover.thrust/2*prop.diameter/2;
+    propstress=propmoment*0.5*prop.thickRoot/prop.amomentRoot;
+    sf=2;
+    propmaxstress=prop.sy*1e6/sf;
+    c_prop(1)=propstress/propmaxstress-1;
     %Deflection
     
 %Rod Constraints
@@ -55,13 +60,13 @@ function [constraints]=calc_constraints(battery, motor, prop, foil, rod,esc,land
      %stress in y direction
      sf=2;
      maxStress=rod.mat.Sy*1e6/sf; %must not reach yield stress with sf of 2.
-     stressY=hover.q*rod.Width/rod.AmomentY;
+     stressY=hover.q*0.5*rod.Width/rod.AmomentY;
      c_rod(4)=stressY/maxStress-1;
      
      %stress in x direction
      sf=2;
      maxStress=rod.mat.Sy*1e6/sf; %must not reach yield stress with sf of 2.
-     stressX=hover.thrust*rod.Length*rod.Height/rod.AmomentX;
+     stressX=hover.thrust*rod.Length*0.5*rod.Height/rod.AmomentX;
      c_rod(5)=stressX/maxStress-1;
  
  %ESC Constraints

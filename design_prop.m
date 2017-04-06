@@ -45,15 +45,25 @@ function [prop,foil] = design_prop(x_int, x_cont)
     foil.Reexp=foilData(x_int(5),9);
     foil.Num=foilData(x_int(5),10);
     
+    K_A=0.60; % via https://ocw.mit.edu/courses/aeronautics-and-astronautics/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/systems-labs-06/spl10b.pdf
+    K_I=0.036;
+    
     foilnum=['NACA00' num2str(foil.Num)];
     prop.avgThickness=0.01*foil.Num*prop.chordAve;
-    prop.xsArea=0.5*prop.avgThickness*prop.chordAve; %assuming may be approximated as a triangle
+    prop.xsArea=K_A*prop.avgThickness*prop.chordAve; %assuming may be approximated as a triangle
     vol=prop.xsArea*prop.diameter;
     %Note: assuming propeller is polycarb (1190 kg/m^3)
+    prop.thickRoot=0.01*foil.Num*prop.chordRoot;
+    prop.areaRoot=K_A*prop.thickRoot*prop.chordRoot;
+    camber=0;
+    prop.amomentRoot=K_I*prop.thickRoot*prop.chordRoot*(prop.thickRoot.^2 + camber^2);
+    
     prop.mass=vol*1190;
     %Note: assuming propeller is polycarb (0.29 $/in^3)
     costdens=0.29*(100/2.54)^3;
     prop.cost=costdens*vol;
+    prop.sy=55; %yield strength, mPa
+    prop.modulus=2; %young's modulus, GPa
     
     write_propfile(prop,foil);
 end

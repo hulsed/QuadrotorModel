@@ -16,9 +16,9 @@ function obj=objcfun(x_int,x_cont)
     
     conviol=max(0,constraints);
 
-    obj=-obj1+2000*sum((1+conviol).^2-1);
+    obj=-obj1+1000*sum((1+conviol).^2-1);
     if isnan(obj) || obj>20000
-        obj=20000;
+        obj=100000;
     end
 end
 
