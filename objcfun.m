@@ -9,10 +9,15 @@ function obj=objcfun(x_int,x_cont)
     rod = design_rod(x_int,x_cont, prop,res);
     esc = design_esc(x_int);
     landingskid=design_landingskid(x_int,x_cont,res);
+    
+    oper.climbvel=x_cont(12);
+    oper.flightangle=x_cont(13);  
+    
     %design of system
     sys=design_sys(battery, motor, prop, foil, rod,esc,landingskid, res);
     %calculate objective
-    [obj1, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landingskid, sys);
+    
+    [obj1, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landingskid, sys, oper);
     
     conviol=max(0,constraints);
 

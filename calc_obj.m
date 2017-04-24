@@ -1,14 +1,12 @@
-function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landingskid, sys)
+function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landingskid, sys, oper)
     
     failure=0;
     %write prop file for qprop
     write_propfile(prop,foil);
     %calculate hover performance
     [hover] = calc_hover(sys);
-    ClimbVel=10; %velocity requirement for climb: 10 m/s (22 mph)
-    [climb] = calc_climb(sys,ClimbVel);
-    flightangle=10;
-    [flight]=calc_flight(sys,flightangle);
+    [climb] = calc_climb(sys,oper.climbvel);
+    [flight]=calc_flight(sys,oper.flightangle);
     
     mission=calc_mission(sys,hover,climb, flight);
     
@@ -29,7 +27,7 @@ function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landi
     elseif flight.failure==1
         failure=1;
     elseif isnan(objcal)
-        failure=1
+        failure=1;
     end
     
     %gives a poor performance in case the model breaks

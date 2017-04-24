@@ -25,7 +25,7 @@ flightenergy=(4*hover.pelec+sys.power)*flighttime;
 mission.POIenergy=hoverenergy+flightenergy;
 
 %number of POIs that can be observed
-mission.POIs=mission.POIenergy/mission.usefulenergy;
+mission.POIs=mission.usefulenergy/mission.POIenergy;
 mission.time=mission.climbtime+mission.descendtime+mission.POIs*(flighttime+stoptime);
 
 mission.value=mission.POIs*POIval-mission.time*opercost;
