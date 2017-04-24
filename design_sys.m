@@ -18,4 +18,5 @@ sys.cost=4*rod.Cost+4*motor.Cost+battery.Cost+4*prop.cost+4*esc.cost+landingskid
 %power used not including funcitonality
 sys.power=res.power;
 
+sys.energy=battery.Energy;
 end

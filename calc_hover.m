@@ -1,7 +1,6 @@
 function [hover] = calc_hover(sys)
 
 thrustReq = sys.mass*9.81/4;
-
 %specified inputs to qprop:
 velStr='0.0';       %velocity (m/s)
 thrustStr=num2str(thrustReq);
