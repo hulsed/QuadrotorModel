@@ -1,4 +1,4 @@
-function obj=objcfun(x_int,x_cont)           
+function [obj,obj1,con]=objcfun(x_int,x_cont)           
     
     % "non-designed" parts of the design.
     res=res_assumptions();
@@ -20,10 +20,12 @@ function obj=objcfun(x_int,x_cont)
     [obj1, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landingskid, sys, oper);
     
     conviol=max(0,constraints);
+    
+    con=sum((1+conviol).^2-1);
 
-    obj=obj1+1000*sum((1+conviol).^2-1);
+    obj=obj1+1e5*sum((1+conviol).^2-1);
     if isnan(obj) || obj>20000
-        obj=100000;
+        obj=1e8;
     end
 end
 
