@@ -11,8 +11,11 @@ function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landi
     mission=calc_mission(sys,hover,climb, flight);
     
     % Calculation of Constraints (only possible with performance data) 
-        [constraints]=calc_constraints(battery,motor,prop,foil,rod,esc,landingskid,sys,hover,failure);
+        [constraints_h]=calc_constraints(battery,motor,prop,foil,rod,esc,landingskid,sys,hover,failure);
+        [constraints_c]=calc_constraints(battery,motor,prop,foil,rod,esc,landingskid,sys,climb,failure);
+        [constraints_f]=calc_constraints(battery,motor,prop,foil,rod,esc,landingskid,sys,flight,failure);
         
+        constraints=[constraints_h, constraints_c, constraints_f];
         
     % Calculates objectives
     objcal=-10*mission.value+sys.cost;
