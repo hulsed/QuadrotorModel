@@ -52,11 +52,25 @@ nvars=nint+ncon;
 UBall=[Intchoices,UBc];
 LBall=[Intchoices*0+1,LBc];
 
+
+tests=10;
+
+for i=1:tests
+
 %options=optimoptions(@ga,'PlotFcn',@gaplotbestf)
-options=gaoptimset('PlotFcn',@gaplotbestf, 'Display', 'iter');
+options=gaoptimset('PlotFcn',@gaplotbestf, 'Display', 'iter', 'Generations', 200);
+
 
 [x,fval,exitflag]=ga(fun,nvars,[],[],[],[],LBall,UBall,cfun,[1:nint],options)
 
+xopt(i,:)=x;
+fopt(i)=fval;
+
+savefig(['GAResults' num2str(i)])
+
+end
+
+save(['GAResults_final'])
 
 
     function y=objfun(x)

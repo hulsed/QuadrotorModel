@@ -29,7 +29,7 @@ function [obj,obj1,con]=objcfun(x_int,x_cont)
         con=0;
     end
     
-    obj=obj1+1e5*sum((1+conviol).^2-1);
+    obj=obj1+10000*sum((1+conviol).^2-1);
     if isnan(obj) || obj>20000
         obj=1e8;
     end
