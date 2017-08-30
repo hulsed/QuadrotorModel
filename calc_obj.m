@@ -17,6 +17,9 @@ function [obj, constraints] = calc_obj(battery, motor, prop, foil, rod,esc,landi
         
         constraints=[constraints_h, constraints_c, constraints_f];
         
+        %theoretical hover time calc
+        %sys.energy/(60*(4*hover.pelec+sys.power))
+        
     % Calculates objectives
     objcal=-10*mission.value+sys.cost;
     

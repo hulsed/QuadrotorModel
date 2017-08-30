@@ -62,7 +62,7 @@ UBall=[Intchoices,UBc];
 LBall=[Intchoices*0+1,LBc];
 x0all=[x_int0,x_cont0];
 
-tests=10;
+tests=1;
 
 for i=1:tests
 
