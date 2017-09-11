@@ -30,5 +30,10 @@ mission.time=mission.climbtime+mission.descendtime+mission.POIs*(flighttime+stop
 
 mission.value=mission.POIs*POIval-mission.time*opercost;
 
+%sys.mass
+%sys.cost
+sys.energy
+%mission.time
+
 
 end
